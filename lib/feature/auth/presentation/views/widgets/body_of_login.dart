@@ -19,7 +19,10 @@ class BodyOfLogin extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Spacer(flex: 1),
-        const TextLogin(),
+        const TitleAuth(
+          title: TextManager.welcomeBack,
+          subTitle: TextManager.enterLoginInfo,
+        ),
         const Spacer(flex: 2),
         const CustomTextFromFeild(text: TextManager.phoneOrUserName),
         SizedBox(height: HeightManger.h16),
@@ -34,7 +37,10 @@ class BodyOfLogin extends StatelessWidget {
         ),
         const CustomButton(text: TextManager.login),
         const OrDivider(),
-        const SocialAuth(),
+        const SocialAuth(
+          textGoogle: TextManager.loginWithGoogle,
+          textFacebook: TextManager.loginWithFacebook,
+        ),
         const CustomRegesterText(),
         const Spacer(flex: 3),
       ],

@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/color_manager.dart';
 import 'package:spot/core/styles.dart';
-import 'package:spot/core/text_manager.dart';
 
-class TextLogin extends StatelessWidget {
-  const TextLogin({super.key});
-
+class TitleAuth extends StatelessWidget {
+  const TitleAuth({super.key, required this.title, required this.subTitle});
+  final String title;
+  final String subTitle;
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          TextManager.welcomeBack,
+          title,
           style: Styles.textStyle26.copyWith(color: ColorManager.blackColor),
         ),
         Text(
-          TextManager.enterLoginInfo,
+          subTitle,
           style: Styles.textStyle14.copyWith(color: ColorManager.navyBlue),
         ),
       ],
