@@ -2,6 +2,11 @@ import 'package:flutter/painting.dart';
 
 class Styles {
   Styles._();
+  static TextStyle textStyle12 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: Color(0xffA5ABBF),
+  );
   static TextStyle textStyle14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
