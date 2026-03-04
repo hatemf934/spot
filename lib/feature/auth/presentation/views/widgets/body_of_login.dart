@@ -1,49 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:spot/core/height_manger.dart';
-import 'package:spot/core/styles.dart';
-import 'package:spot/core/text_manager.dart';
+import 'package:spot/core/utils/height_manger.dart';
+import 'package:spot/core/utils/padding_manager.dart';
+import 'package:spot/core/utils/styles.dart';
+import 'package:spot/core/utils/text_manager.dart';
+import 'package:spot/feature/auth/presentation/views/regester_view.dart';
+import 'package:spot/feature/auth/presentation/views/widgets/another_body_of_login_section.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_button.dart';
-import 'package:spot/feature/auth/presentation/views/widgets/custom_regester_text.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_text_button.dart';
-import 'package:spot/feature/auth/presentation/views/widgets/custom_text_from_feild.dart';
-import 'package:spot/feature/auth/presentation/views/widgets/or_divider.dart';
-import 'package:spot/feature/auth/presentation/views/widgets/social_auth.dart';
+import 'package:spot/feature/auth/presentation/views/widgets/group_of_text_feild_login.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/text_of_login.dart';
 
-class BodyOfLogin extends StatelessWidget {
+class BodyOfLogin extends StatefulWidget {
   const BodyOfLogin({super.key});
 
   @override
+  State<BodyOfLogin> createState() => _BodyOfLoginState();
+}
+
+class _BodyOfLoginState extends State<BodyOfLogin> {
+  bool isSubmitted = false;
+  final GlobalKey<FormState> formkey = GlobalKey();
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Spacer(flex: 1),
-        const TitleAuth(
-          title: TextManager.welcomeBack,
-          subTitle: TextManager.enterLoginInfo,
+    double screenHeight = MediaQuery.of(context).size.height;
+    return SingleChildScrollView(
+      padding: EdgeInsets.symmetric(horizontal: PaddingManager.p20),
+      child: Form(
+        key: formkey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: screenHeight * 0.08),
+            const TitleAuth(
+              title: TextManager.welcomeBack,
+              subTitle: TextManager.enterLoginInfo,
+            ),
+            GroupOfTextFeildLogin(isSubmitted: isSubmitted),
+            Align(
+              alignment: Alignment.centerRight,
+              child: CustomTextButton(
+                textButton: TextManager.forgetPassword,
+                textStyle: Styles.textStyle16,
+                onPressed: () {},
+              ),
+            ),
+            const SizedBox(height: HeightManager.h24),
+            CustomButton(
+              onTap: () {
+                setState(() {
+                  isSubmitted = true;
+                });
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (formkey.currentState!.validate()) {
+                    Navigator.pushNamed(context, RegesterView.id);
+                  }
+                });
+              },
+              text: TextManager.login,
+            ),
+            AnotherAuthSection(
+              onPressed: () => Navigator.pushNamed(context, RegesterView.id),
+              textGoogle: TextManager.loginWithGoogle,
+              textFacebook: TextManager.loginWithFacebook,
+              haveAccount: TextManager.dontHaveAccount,
+              textButton: TextManager.signUp,
+            ),
+          ],
         ),
-        const Spacer(flex: 2),
-        const CustomTextFromFeild(text: TextManager.phoneOrUserName),
-        SizedBox(height: HeightManger.h16),
-        const CustomTextFromFeild(text: TextManager.password),
-        Align(
-          alignment: Alignment.centerRight,
-          child: CustomTextButton(
-            textButton: TextManager.forgetPassword,
-            textStyle: Styles.textStyle16,
-            onPressed: () {},
-          ),
-        ),
-        const CustomButton(text: TextManager.login),
-        const OrDivider(),
-        const SocialAuth(
-          textGoogle: TextManager.loginWithGoogle,
-          textFacebook: TextManager.loginWithFacebook,
-        ),
-        const CustomRegesterText(),
-        const Spacer(flex: 3),
-      ],
+      ),
     );
   }
 }

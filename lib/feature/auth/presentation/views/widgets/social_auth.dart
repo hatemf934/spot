@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spot/core/assets_manager.dart';
+import 'package:spot/core/utils/assets_manager.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_social.dart';
 
 class SocialAuth extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:spot/core/color_manager.dart';
-import 'package:spot/core/padding_manager.dart';
-import 'package:spot/core/route_manager.dart';
+import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/padding_manager.dart';
+import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/body_of_login.dart';
 
 class LoginView extends StatelessWidget {
@@ -13,7 +13,10 @@ class LoginView extends StatelessWidget {
       backgroundColor: ColorManager.scaffoldColor,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: PaddingManager.p20),
-        child: BodyOfLogin(),
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: BodyOfLogin(),
+        ),
       ),
     );
   }

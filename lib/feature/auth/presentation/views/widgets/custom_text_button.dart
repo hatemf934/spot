@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spot/core/color_manager.dart';
+import 'package:spot/core/utils/color_manager.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({

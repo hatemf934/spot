@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:spot/core/color_manager.dart';
-import 'package:spot/core/styles.dart';
+import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/styles.dart';
 
 class TitleAuth extends StatelessWidget {
   const TitleAuth({super.key, required this.title, required this.subTitle});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:spot/core/color_manager.dart';
-import 'package:spot/core/styles.dart';
-import 'package:spot/core/text_manager.dart';
+import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/styles.dart';
+import 'package:spot/core/utils/text_manager.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_divider.dart';
 
 class OrDivider extends StatelessWidget {

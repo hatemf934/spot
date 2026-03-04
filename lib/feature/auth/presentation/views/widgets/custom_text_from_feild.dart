@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:spot/core/color_manager.dart';
-import 'package:spot/core/raduis_manager.dart';
-import 'package:spot/core/styles.dart';
+import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/raduis_manager.dart';
+import 'package:spot/core/utils/styles.dart';
 
 class CustomTextFromFeild extends StatelessWidget {
   const CustomTextFromFeild({
@@ -10,11 +10,13 @@ class CustomTextFromFeild extends StatelessWidget {
     this.onPressedIcons,
     this.iconData,
     this.obscureText = false,
+    required this.validator,
   });
   final String text;
   final Function()? onPressedIcons;
   final IconData? iconData;
   final bool obscureText;
+  final FormFieldValidator<String>? validator;
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -25,6 +27,7 @@ class CustomTextFromFeild extends StatelessWidget {
         ),
       ),
       child: TextFormField(
+        validator: validator,
         obscureText: obscureText,
         cursorColor: ColorManager.primaryColor,
         autovalidateMode: AutovalidateMode.onUserInteraction,

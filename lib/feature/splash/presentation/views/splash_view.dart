@@ -1,8 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:spot/core/assets_manager.dart';
-import 'package:spot/core/color_manager.dart';
-import 'package:spot/core/route_manager.dart';
+import 'package:spot/core/utils/assets_manager.dart';
+import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/feature/auth/presentation/views/login_view.dart';
 
 class SplashView extends StatefulWidget {
