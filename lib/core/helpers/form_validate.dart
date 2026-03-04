@@ -106,4 +106,16 @@ class FormValidate {
 
     return null;
   }
+
+  String? validateConfirmPassword(String? value, String originalPassword) {
+    if (validateRequired(value) != null) {
+      return validateRequired(value);
+    }
+
+    if (value != originalPassword) {
+      return TextValidateManager.passwordsNotMatch;
+    }
+
+    return null;
+  }
 }

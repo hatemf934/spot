@@ -11,12 +11,16 @@ class CustomTextFromFeild extends StatelessWidget {
     this.iconData,
     this.obscureText = false,
     required this.validator,
+    this.prefixIcon,
+    this.controller,
   });
   final String text;
   final Function()? onPressedIcons;
   final IconData? iconData;
   final bool obscureText;
   final FormFieldValidator<String>? validator;
+  final Widget? prefixIcon;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -27,6 +31,7 @@ class CustomTextFromFeild extends StatelessWidget {
         ),
       ),
       child: TextFormField(
+        controller: controller,
         validator: validator,
         obscureText: obscureText,
         cursorColor: ColorManager.primaryColor,
@@ -41,6 +46,7 @@ class CustomTextFromFeild extends StatelessWidget {
             onPressed: onPressedIcons,
             icon: Icon(iconData, color: ColorManager.primaryColor),
           ),
+          prefixIcon: prefixIcon,
           errorStyle: TextStyle(color: ColorManager.primaryColor),
           enabledBorder: buildOutlineInputBorder(
             color: ColorManager.borderColor,

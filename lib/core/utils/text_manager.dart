@@ -19,7 +19,7 @@ class TextManager {
   static const String fullName = "Full Name";
   static const String userName = "User Name";
   static const String phoneNumber = "Phone Number";
-  static const String emailOptional = "Email Address (optional)";
+  static const String emailOptional = "Email Address";
   static const String dateOfBirth = "Date of Birth";
   static const String gender = "Gender";
   static const String confirmPassword = "Confirm Password";

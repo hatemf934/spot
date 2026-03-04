@@ -4,24 +4,40 @@ import 'package:spot/core/helpers/form_validate.dart';
 import 'package:spot/core/utils/text_manager.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_text_from_feild.dart';
 
-class GroupOfTextFeildLogin extends StatelessWidget {
+class GroupOfTextFeildLogin extends StatefulWidget {
   const GroupOfTextFeildLogin({super.key, required this.isSubmitted});
   final bool isSubmitted;
+
+  @override
+  State<GroupOfTextFeildLogin> createState() => _GroupOfTextFeildLoginState();
+}
+
+class _GroupOfTextFeildLoginState extends State<GroupOfTextFeildLogin> {
+  bool obscureText = false;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: HeightManager.h32),
         CustomTextFromFeild(
-          validator: (value) =>
-              FormValidate(isSubmitted: isSubmitted).validateRequired(value),
+          validator: (value) => FormValidate(
+            isSubmitted: widget.isSubmitted,
+          ).validateRequired(value),
           text: TextManager.phoneOrUserName,
         ),
         const SizedBox(height: HeightManager.h16),
         CustomTextFromFeild(
-          validator: (value) =>
-              FormValidate(isSubmitted: isSubmitted).validateRequired(value),
+          validator: (value) => FormValidate(
+            isSubmitted: widget.isSubmitted,
+          ).validateRequired(value),
           text: TextManager.password,
+          obscureText: !obscureText,
+          onPressedIcons: () {
+            setState(() {
+              obscureText = !obscureText;
+            });
+          },
+          iconData: obscureText ? Icons.visibility : Icons.visibility_off,
         ),
       ],
     );
