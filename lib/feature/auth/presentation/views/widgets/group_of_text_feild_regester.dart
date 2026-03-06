@@ -3,6 +3,7 @@ import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/helpers/form_validate.dart';
 import 'package:spot/core/utils/text_manager.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_text_from_feild.dart';
+import 'package:spot/feature/auth/presentation/views/widgets/phone_text_feild.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/show_date_button_sheet.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/show_gender_button_sheet.dart';
 
@@ -20,7 +21,7 @@ class _GroupOfTextFeildRegesterState extends State<GroupOfTextFeildRegester> {
   final TextEditingController birthdayController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
   DateTime selectedBirthDate = DateTime(2004, 3, 16);
-  String selectedGender = "Male";
+  String selectedGender = TextManager.maleText;
   @override
   void dispose() {
     passwordController.dispose();
@@ -47,14 +48,10 @@ class _GroupOfTextFeildRegesterState extends State<GroupOfTextFeildRegester> {
           text: TextManager.userName,
         ),
         SizedBox(height: HeightManager.h12),
-        CustomTextFromFeild(
-          validator: (value) => FormValidate(
-            isSubmitted: widget.isSubmitted,
-          ).validatePhone(value),
-          text: TextManager.phoneNumber,
-        ),
+        PhoneTextFeild(),
         SizedBox(height: HeightManager.h12),
         CustomTextFromFeild(
+          iconData: Icons.email,
           validator: (value) => FormValidate(
             isSubmitted: widget.isSubmitted,
           ).validateEmail(value),

@@ -27,4 +27,6 @@ class TextManager {
   static const String choose = "Choose";
   static const String maleText = "Male";
   static const String femaleText = "Female";
+  static const String hintPhone = "0xxxxxxxxxxx";
+  static const String searchCountry = 'Search country...';
 }
