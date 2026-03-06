@@ -33,11 +33,9 @@ Future<String?> showGenderButtonSheet(
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 GenderSelected(
                   selectedGender: initialGender,
-                  onChanged: (value) {
-                    setState(() {
-                      initialGender = value!;
-                    });
-                  },
+                  onChanged: (value) => setState(() {
+                    initialGender = value!;
+                  }),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 ButtonSelected(

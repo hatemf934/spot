@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/helpers/form_validate.dart';
 import 'package:spot/core/utils/text_manager.dart';
+import 'package:spot/core/utils/text_validate_manager.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_text_from_feild.dart';
 
 class GroupOfTextFeildLogin extends StatefulWidget {
@@ -20,23 +21,24 @@ class _GroupOfTextFeildLoginState extends State<GroupOfTextFeildLogin> {
       children: [
         const SizedBox(height: HeightManager.h32),
         CustomTextFromFeild(
-          validator: (value) => FormValidate(
-            isSubmitted: widget.isSubmitted,
-          ).validateRequired(value),
+          validator: (value) =>
+              FormValidate(isSubmitted: widget.isSubmitted).validateRequired(
+                value,
+                TextValidateManager.usernameAndPhoneRequired,
+              ),
           text: TextManager.phoneOrUserName,
         ),
         const SizedBox(height: HeightManager.h16),
         CustomTextFromFeild(
           validator: (value) => FormValidate(
             isSubmitted: widget.isSubmitted,
-          ).validateRequired(value),
+          ).validateRequired(value, TextValidateManager.passwordRequired),
           text: TextManager.password,
           obscureText: !obscureText,
-          onPressedIcons: () {
-            setState(() {
-              obscureText = !obscureText;
-            });
-          },
+          onPressedIcons: () => setState(() {
+            obscureText = !obscureText;
+          }),
+
           iconData: obscureText ? Icons.visibility : Icons.visibility_off,
         ),
       ],

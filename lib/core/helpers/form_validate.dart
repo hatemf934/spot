@@ -7,8 +7,6 @@ class FormValidate {
 
   final emailRegExp = RegExp(TextValidateManager.emailRegExp);
   final fullNameRegExp = RegExp(TextValidateManager.fullNameRegExp);
-  final phoneRegExp = RegExp(TextValidateManager.phoneFormat);
-
   final passwordLeastLowerCaseLetter = RegExp(
     TextValidateManager.passwordLeastLowerCaseLetter,
   );
@@ -19,20 +17,18 @@ class FormValidate {
   final passwordLeastEightNumber = RegExp(
     TextValidateManager.passwordLeastEightNumber,
   );
-
-  String? validateRequired(String? value) {
+  String? validateRequired(String? value, String validateText) {
     if (value == null || value.trim().isEmpty) {
-      return isSubmitted ? TextValidateManager.fieldIsRequired : null;
+      return isSubmitted ? validateText : null;
     }
     return null;
   }
 
   String? validateEmail(String? value) {
-    if (validateRequired(value) != null) {
-      return validateRequired(value);
+    if (value == null || value.trim().isEmpty) {
+      return TextValidateManager.emailRequired;
     }
-
-    if (!emailRegExp.hasMatch(value!.trim())) {
+    if (!emailRegExp.hasMatch(value.trim())) {
       return TextValidateManager.validEmailAddress;
     }
 
@@ -40,39 +36,23 @@ class FormValidate {
   }
 
   String? validateFullName(String? value) {
-    if (validateRequired(value) != null) {
-      return validateRequired(value);
+    if (value == null || value.trim().isEmpty) {
+      return TextValidateManager.fullNameRequired;
     }
 
-    if (!fullNameRegExp.hasMatch(value!.trim())) {
+    if (!fullNameRegExp.hasMatch(value.trim())) {
       return TextValidateManager.invalidFullName;
     }
 
     return null;
   }
 
-  String? validatePhone(String? value) {
-    if (validateRequired(value) != null) {
-      return TextValidateManager.requiredPhone;
-    }
-
-    if (!phoneRegExp.hasMatch(value!.trim())) {
-      return TextValidateManager.invalidPhoneFormat;
-    }
-
-    if (value.trim().length < 11) {
-      return TextValidateManager.phoneTooShort;
-    }
-
-    return null;
-  }
-
   String? validateUsername(String? value) {
-    if (validateRequired(value) != null) {
-      return validateRequired(value);
+    if (value == null || value.trim().isEmpty) {
+      return TextValidateManager.usernameRequired;
     }
 
-    if (value!.trim().length < 4) {
+    if (value.trim().length < 4) {
       return TextValidateManager.usernameTooShort;
     }
 
@@ -84,11 +64,11 @@ class FormValidate {
   }
 
   String? validatePassword(String? value) {
-    if (validateRequired(value) != null) {
-      return validateRequired(value);
+    if (value == null || value.trim().isEmpty) {
+      return TextValidateManager.passwordRequired;
     }
 
-    if (!passwordLeastLowerCaseLetter.hasMatch(value!)) {
+    if (!passwordLeastLowerCaseLetter.hasMatch(value)) {
       return TextValidateManager.passwordFromAtoZ;
     }
 
@@ -108,8 +88,8 @@ class FormValidate {
   }
 
   String? validateConfirmPassword(String? value, String originalPassword) {
-    if (validateRequired(value) != null) {
-      return validateRequired(value);
+    if (value == null || value.trim().isEmpty) {
+      return TextValidateManager.passwordRequired;
     }
 
     if (value != originalPassword) {
@@ -118,4 +98,22 @@ class FormValidate {
 
     return null;
   }
+
+  //************phone validate for future*************//
+  //   final phoneRegExp = RegExp(TextValidateManager.phoneFormat);
+  // String? validatePhone(String? value) {
+  //    if (value == null || value.trim().isEmpty) {
+  //   return TextValidateManager.passwordRequired;
+  // }
+
+  //   if (!phoneRegExp.hasMatch(value!.trim())) {
+  //     return TextValidateManager.invalidPhoneFormat;
+  //   }
+
+  //   if (value.trim().length < 11) {
+  //     return TextValidateManager.phoneTooShort;
+  //   }
+
+  //   return null;
+  // }
 }

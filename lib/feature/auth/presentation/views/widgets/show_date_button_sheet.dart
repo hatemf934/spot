@@ -35,12 +35,11 @@ Future<DateTime?> showDateButtonSheet(
                 CalenderWidget(
                   focusedDay: focusedDay,
                   selectedDay: selectedDay,
-                  onDaySelected: (newSelectedDay, newFocusedDay) {
-                    setModalState(() {
-                      selectedDay = newSelectedDay;
-                      focusedDay = newFocusedDay;
-                    });
-                  },
+                  onDaySelected: (newSelectedDay, newFocusedDay) =>
+                      setModalState(() {
+                        selectedDay = newSelectedDay;
+                        focusedDay = newFocusedDay;
+                      }),
                 ),
                 ButtonSelected(
                   onPressed: () => Navigator.pop(context, selectedDay),
