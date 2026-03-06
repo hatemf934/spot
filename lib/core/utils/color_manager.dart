@@ -9,4 +9,5 @@ class ColorManager {
   static Color witheColor = Colors.white;
   static Color scaffoldColor = Color(0xffFAFAFA);
   static Color borderColor = Color(0xfff0f0f3);
+  static Color greyColor = Colors.grey.shade400;
 }

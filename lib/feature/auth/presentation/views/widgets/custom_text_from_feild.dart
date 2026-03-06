@@ -13,6 +13,7 @@ class CustomTextFromFeild extends StatelessWidget {
     required this.validator,
     this.prefixIcon,
     this.controller,
+    this.readOnly = false,
   });
   final String text;
   final Function()? onPressedIcons;
@@ -21,6 +22,7 @@ class CustomTextFromFeild extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final Widget? prefixIcon;
   final TextEditingController? controller;
+  final bool readOnly;
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -34,6 +36,7 @@ class CustomTextFromFeild extends StatelessWidget {
         controller: controller,
         validator: validator,
         obscureText: obscureText,
+        readOnly: readOnly,
         cursorColor: ColorManager.primaryColor,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         style: Styles.textStyle14.copyWith(color: ColorManager.blackColor),

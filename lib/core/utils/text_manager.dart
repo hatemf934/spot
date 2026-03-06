@@ -24,4 +24,7 @@ class TextManager {
   static const String gender = "Gender";
   static const String confirmPassword = "Confirm Password";
   static const String alreadyHaveAccount = "Already have an account? ";
+  static const String choose = "Choose";
+  static const String maleText = "Male";
+  static const String femaleText = "Female";
 }

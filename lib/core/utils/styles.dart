@@ -1,34 +1,36 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:spot/core/utils/font_manager.dart';
 
 class Styles {
   Styles._();
   static TextStyle textStyle12 = TextStyle(
-    fontSize: 12,
+    fontSize: FontManager.f12,
     fontWeight: FontWeight.w400,
     color: Color(0xffA5ABBF),
   );
   static TextStyle textStyle14 = TextStyle(
-    fontSize: 14,
+    fontSize: FontManager.f14,
     fontWeight: FontWeight.w400,
   );
   static TextStyle textStyle15 = TextStyle(
-    fontSize: 15,
+    fontSize: FontManager.f15,
     fontWeight: FontWeight.w400,
   );
   static TextStyle textStyle16 = TextStyle(
-    fontSize: 16,
+    fontSize: FontManager.f16,
     fontWeight: FontWeight.w400,
   );
   static TextStyle textStyle20 = TextStyle(
-    fontSize: 20,
+    fontSize: FontManager.f20,
     fontWeight: FontWeight.bold,
   );
   static TextStyle textStyle22 = TextStyle(
-    fontSize: 22,
+    fontSize: FontManager.f22,
     fontWeight: FontWeight.bold,
   );
   static TextStyle textStyle26 = TextStyle(
-    fontSize: 26,
+    fontSize: FontManager.f26,
     fontWeight: FontWeight.bold,
   );
 }
