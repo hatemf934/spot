@@ -32,7 +32,11 @@ class GroupOfTextFeildRegester extends StatelessWidget {
         SizedBox(height: HeightManager.h12),
         GenderTextFeild(isSubmitted: isSubmitted),
         SizedBox(height: HeightManager.h12),
-        PasswordTextFeild(isSubmitted: isSubmitted),
+        PasswordTextFeild(
+          hintPassword: TextManager.password,
+          hintConfirmPassword: TextManager.confirmPassword,
+          isSubmitted: isSubmitted,
+        ),
       ],
     );
   }

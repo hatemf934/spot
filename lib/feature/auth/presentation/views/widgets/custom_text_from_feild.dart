@@ -10,7 +10,7 @@ class CustomTextFromFeild extends StatelessWidget {
     this.onPressedIcons,
     this.iconData,
     this.obscureText = false,
-    required this.validator,
+    this.validator,
     this.prefixIcon,
     this.controller,
     this.readOnly = false,

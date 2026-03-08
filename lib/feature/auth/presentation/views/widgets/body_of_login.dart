@@ -9,6 +9,7 @@ import 'package:spot/feature/auth/presentation/views/widgets/custom_button.dart'
 import 'package:spot/feature/auth/presentation/views/widgets/custom_text_button.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/group_of_text_feild_login.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/text_of_login.dart';
+import 'package:spot/feature/forgrtPassword/presentation/view/forget_password.dart';
 
 class BodyOfLogin extends StatefulWidget {
   const BodyOfLogin({super.key});
@@ -41,7 +42,8 @@ class _BodyOfLoginState extends State<BodyOfLogin> {
               child: CustomTextButton(
                 textButton: TextManager.forgetPassword,
                 textStyle: Styles.textStyle16,
-                onPressed: () {},
+                onPressed: () =>
+                    Navigator.pushNamed(context, ForgetPassword.id),
               ),
             ),
             const SizedBox(height: HeightManager.h24),

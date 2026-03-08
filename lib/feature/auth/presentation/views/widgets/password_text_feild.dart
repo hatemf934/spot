@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/helpers/form_validate.dart';
 import 'package:spot/core/utils/height_manger.dart';
-import 'package:spot/core/utils/text_manager.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_text_from_feild.dart';
 
 class PasswordTextFeild extends StatefulWidget {
-  const PasswordTextFeild({super.key, required this.isSubmitted});
+  const PasswordTextFeild({
+    super.key,
+    required this.isSubmitted,
+    required this.hintPassword,
+    required this.hintConfirmPassword,
+  });
   final bool isSubmitted;
+  final String hintPassword;
+  final String hintConfirmPassword;
   @override
   State<PasswordTextFeild> createState() => _PasswordTextFeildState();
 }
@@ -30,7 +36,7 @@ class _PasswordTextFeildState extends State<PasswordTextFeild> {
           validator: (value) => FormValidate(
             isSubmitted: widget.isSubmitted,
           ).validatePassword(value),
-          text: TextManager.password,
+          text: widget.hintPassword,
           obscureText: !obscureTextPassword,
           onPressedIcons: () => setState(() {
             obscureTextConfirm = !obscureTextConfirm;
@@ -44,7 +50,7 @@ class _PasswordTextFeildState extends State<PasswordTextFeild> {
           validator: (value) => FormValidate(
             isSubmitted: widget.isSubmitted,
           ).validateConfirmPassword(value, passwordController.text),
-          text: TextManager.confirmPassword,
+          text: widget.hintConfirmPassword,
           obscureText: !obscureTextConfirm,
           onPressedIcons: () => setState(() {
             obscureTextConfirm = !obscureTextConfirm;
