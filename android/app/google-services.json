@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "227816005800",
+    "project_id": "spot-975f2",
+    "storage_bucket": "spot-975f2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227816005800:android:edbccf191206db8fa7229d",
+        "android_client_info": {
+          "package_name": "com.example.spot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2QkT0vkdMWdG7abH10hQKg_e84uq0600"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

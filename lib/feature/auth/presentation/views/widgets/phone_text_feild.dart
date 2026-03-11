@@ -7,8 +7,8 @@ import 'package:spot/core/utils/styles.dart';
 import 'package:spot/core/utils/text_manager.dart';
 
 class PhoneTextFeild extends StatelessWidget {
-  const PhoneTextFeild({super.key});
-
+  const PhoneTextFeild({super.key, required this.phoneController});
+  final TextEditingController phoneController;
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -19,6 +19,8 @@ class PhoneTextFeild extends StatelessWidget {
         ),
       ),
       child: IntlPhoneField(
+        keyboardType: TextInputType.phone,
+        controller: phoneController,
         cursorColor: ColorManager.primaryColor,
         pickerDialogStyle: PickerDialogStyle(
           backgroundColor: ColorManager.witheColor,

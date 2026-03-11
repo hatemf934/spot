@@ -6,6 +6,7 @@ class TextValidateManager {
   static String passwordLeastDigit = r'(?=.*\d)';
   static String passwordLeastOneCharacter = r'(?=.*[@$!%*?&])';
   static String passwordLeastEightNumber = r'.{8,}';
+  static String usernameRegex = r'^[a-zA-Z0-9_]+$';
 
   static const String fullNameRegExp =
       r'^([a-zA-Z\u0600-\u06FF]{2,}\s){2,}[a-zA-Z\u0600-\u06FF]{2,}$';
@@ -24,6 +25,7 @@ class TextValidateManager {
   static String passwordsNotMatch = "Passwords do not match";
   static String usernameTooShort = "Username must be at least 4 characters";
   static String usernameNoSpaces = "Username must not contain spaces";
+  static String usernameInvalid = "Use only letters, numbers, or underscores";
 
   static String emailRequired = "Email address is required";
   static String passwordRequired = "Password is required";

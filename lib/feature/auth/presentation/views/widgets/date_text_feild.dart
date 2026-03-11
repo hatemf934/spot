@@ -6,25 +6,23 @@ import 'package:spot/feature/auth/presentation/views/widgets/custom_text_from_fe
 import 'package:spot/feature/auth/presentation/views/widgets/show_date_button_sheet.dart';
 
 class DateTextFeild extends StatefulWidget {
-  const DateTextFeild({super.key, required this.isSubmitted});
+  const DateTextFeild({
+    super.key,
+    required this.isSubmitted,
+    required this.dateController,
+  });
   final bool isSubmitted;
+  final TextEditingController dateController;
   @override
   State<DateTextFeild> createState() => _DateTextFeildState();
 }
 
 class _DateTextFeildState extends State<DateTextFeild> {
-  final TextEditingController birthdayController = TextEditingController();
-  @override
-  void dispose() {
-    super.dispose();
-    birthdayController.dispose();
-  }
-
   DateTime selectedBirthDate = DateTime(2004, 3, 16);
   @override
   Widget build(BuildContext context) {
     return CustomTextFromFeild(
-      controller: birthdayController,
+      controller: widget.dateController,
       readOnly: true,
       onPressedIcons: () async {
         final pickedDate = await showDateButtonSheet(
@@ -34,7 +32,7 @@ class _DateTextFeildState extends State<DateTextFeild> {
         if (pickedDate != null) {
           setState(() {
             selectedBirthDate = pickedDate;
-            birthdayController.text =
+            widget.dateController.text =
                 "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
           });
         }

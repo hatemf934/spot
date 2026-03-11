@@ -17,6 +17,7 @@ class FormValidate {
   final passwordLeastEightNumber = RegExp(
     TextValidateManager.passwordLeastEightNumber,
   );
+  final usernameRegex = RegExp(TextValidateManager.usernameRegex);
   String? validateRequired(String? value, String validateText) {
     if (value == null || value.trim().isEmpty) {
       return isSubmitted ? validateText : null;
@@ -48,16 +49,21 @@ class FormValidate {
   }
 
   String? validateUsername(String? value) {
-    if (value == null || value.trim().isEmpty) {
+    final cleanedValue = value?.trim() ?? "";
+    if (cleanedValue.isEmpty) {
       return TextValidateManager.usernameRequired;
     }
 
-    if (value.trim().length < 4) {
+    if (cleanedValue.length < 4) {
       return TextValidateManager.usernameTooShort;
     }
 
-    if (value.contains(" ")) {
+    if (value!.contains(" ")) {
       return TextValidateManager.usernameNoSpaces;
+    }
+
+    if (!usernameRegex.hasMatch(cleanedValue)) {
+      return TextValidateManager.usernameInvalid;
     }
 
     return null;

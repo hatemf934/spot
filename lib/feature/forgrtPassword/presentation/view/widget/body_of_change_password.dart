@@ -17,8 +17,10 @@ class BodyOfChangePassword extends StatefulWidget {
 class _BodyOfChangePasswordState extends State<BodyOfChangePassword> {
   bool isSubmitted = false;
   final GlobalKey<FormState> formkey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
+    final TextEditingController passwordController = TextEditingController();
     return Form(
       key: formkey,
       child: Padding(
@@ -29,6 +31,7 @@ class _BodyOfChangePasswordState extends State<BodyOfChangePassword> {
             Image.asset(AssetsManager.logoForgetPassword),
             SizedBox(height: HeightManager.h40),
             PasswordTextFeild(
+              passwordController: passwordController,
               hintPassword: TextManager.newPassword,
               hintConfirmPassword: TextManager.newPassword,
               isSubmitted: isSubmitted,

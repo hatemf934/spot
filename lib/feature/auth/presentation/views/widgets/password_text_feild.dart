@@ -9,22 +9,17 @@ class PasswordTextFeild extends StatefulWidget {
     required this.isSubmitted,
     required this.hintPassword,
     required this.hintConfirmPassword,
+    required this.passwordController,
   });
   final bool isSubmitted;
   final String hintPassword;
   final String hintConfirmPassword;
+  final TextEditingController passwordController;
   @override
   State<PasswordTextFeild> createState() => _PasswordTextFeildState();
 }
 
 class _PasswordTextFeildState extends State<PasswordTextFeild> {
-  final TextEditingController passwordController = TextEditingController();
-  @override
-  void dispose() {
-    passwordController.dispose();
-    super.dispose();
-  }
-
   bool obscureTextPassword = false;
   bool obscureTextConfirm = false;
   @override
@@ -32,14 +27,14 @@ class _PasswordTextFeildState extends State<PasswordTextFeild> {
     return Column(
       children: [
         CustomTextFromFeild(
-          controller: passwordController,
+          controller: widget.passwordController,
           validator: (value) => FormValidate(
             isSubmitted: widget.isSubmitted,
           ).validatePassword(value),
           text: widget.hintPassword,
           obscureText: !obscureTextPassword,
           onPressedIcons: () => setState(() {
-            obscureTextConfirm = !obscureTextConfirm;
+            obscureTextPassword = !obscureTextPassword;
           }),
           iconData: obscureTextPassword
               ? Icons.visibility
@@ -49,7 +44,7 @@ class _PasswordTextFeildState extends State<PasswordTextFeild> {
         CustomTextFromFeild(
           validator: (value) => FormValidate(
             isSubmitted: widget.isSubmitted,
-          ).validateConfirmPassword(value, passwordController.text),
+          ).validateConfirmPassword(value, widget.passwordController.text),
           text: widget.hintConfirmPassword,
           obscureText: !obscureTextConfirm,
           onPressedIcons: () => setState(() {
