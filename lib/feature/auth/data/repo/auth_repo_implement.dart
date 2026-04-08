@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:spot/core/error/auth_faliure.dart';
 import 'package:spot/core/utils/text_fireauth_manager.dart';
 import 'package:spot/feature/auth/data/model/user_model.dart';
@@ -83,6 +84,33 @@ class AuthRepoImplement extends AuthRepo {
           .signInWithEmailAndPassword(email: email, password: password);
 
       return Right(userCredential);
+    } on FirebaseAuthException catch (e) {
+      return Left(AuthFailure.fromFirebaseAuthException(e));
+    } catch (e) {
+      return Left(AuthFailure(message: TextFireauthManager.kAnErrorOccurred));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserCredential>> signInWithGoogle() async {
+    try {
+      final googleSignIn = GoogleSignIn.instance;
+      await googleSignIn.initialize();
+
+      final GoogleSignInAccount account = await googleSignIn.authenticate(
+        scopeHint: ['email'],
+      );
+
+      final GoogleSignInAuthentication auth = account.authentication;
+
+      if (auth.idToken == null) {
+        return Left(AuthFailure(message: TextFireauthManager.kAnErrorOccurred));
+      }
+
+      final credential = GoogleAuthProvider.credential(idToken: auth.idToken);
+      return Right(
+        await FirebaseAuth.instance.signInWithCredential(credential),
+      );
     } on FirebaseAuthException catch (e) {
       return Left(AuthFailure.fromFirebaseAuthException(e));
     } catch (e) {

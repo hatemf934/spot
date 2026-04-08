@@ -3,6 +3,7 @@ import 'package:spot/core/helpers/custom_aswesome_dialog.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/text_manager.dart';
+import 'package:spot/feature/auth/presentation/bloc/login/login_cubit.dart';
 import 'package:spot/feature/auth/presentation/bloc/regester/regester_cubit.dart';
 import 'package:spot/feature/auth/presentation/views/login_view.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/another_body_of_login_section.dart';
@@ -45,17 +46,34 @@ class _BodyOfRegesterState extends State<BodyOfRegester> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    return BlocListener<RegesterCubit, RegesterState>(
-      listener: (context, state) {
-        if (state is SignupSucsses) {
-          Navigator.pushReplacementNamed(context, HomeView.id);
-        } else if (state is SignupFailure) {
-          CustomAswesomeDialog().AwesomeDialogError(
-            context: context,
-            description: state.errmessage,
-          );
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<LoginCubit, LoginState>(
+          listener: (context, state) {
+            if (state is SignInSucsses) {
+              Navigator.pushReplacementNamed(context, HomeView.id);
+            } else if (state is SignInFailure) {
+              CustomAswesomeDialog().AwesomeDialogError(
+                context: context,
+                description: state.errmessage,
+              );
+            }
+          },
+        ),
+        BlocListener<RegesterCubit, RegesterState>(
+          listener: (context, state) {
+            if (state is SignupSucsses) {
+              Navigator.pushReplacementNamed(context, HomeView.id);
+            } else if (state is SignupFailure) {
+              CustomAswesomeDialog().AwesomeDialogError(
+                context: context,
+                description: state.errmessage,
+              );
+            }
+          },
+        ),
+      ],
+
       child: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: PaddingManager.p20),
         child: Form(

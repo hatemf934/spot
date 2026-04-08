@@ -5,6 +5,7 @@ import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/feature/auth/data/repo/auth_repo_implement.dart';
+import 'package:spot/feature/auth/presentation/bloc/login/login_cubit.dart';
 import 'package:spot/feature/auth/presentation/bloc/regester/regester_cubit.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/body_of_regester.dart';
 
@@ -17,19 +18,25 @@ class RegesterView extends StatelessWidget {
       create: (context) => RegesterCubit(AuthRepoImplement()),
       child: Scaffold(
         backgroundColor: ColorManager.scaffoldColor,
-        body: BlocBuilder<RegesterCubit, RegesterState>(
+        body: BlocBuilder<LoginCubit, LoginState>(
           builder: (context, state) {
-            return ModalProgressHUD(
-              progressIndicator: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  ColorManager.primaryColor,
-                ),
-              ),
-              inAsyncCall: state is SignupLoading,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: PaddingManager.p20),
-                child: BodyOfRegester(),
-              ),
+            return BlocBuilder<RegesterCubit, RegesterState>(
+              builder: (context, state) {
+                return ModalProgressHUD(
+                  progressIndicator: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      ColorManager.primaryColor,
+                    ),
+                  ),
+                  inAsyncCall: state is SignupLoading || state is SignInLoading,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: PaddingManager.p20,
+                    ),
+                    child: BodyOfRegester(),
+                  ),
+                );
+              },
             );
           },
         ),

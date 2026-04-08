@@ -6,7 +6,8 @@ abstract class Failure {
 }
 
 class AuthFailure extends Failure {
-  AuthFailure({required super.message});
+  final bool isCancelled;
+  AuthFailure({required super.message, this.isCancelled = false});
 
   factory AuthFailure.fromFirebaseAuthException(
     FirebaseAuthException authError,
@@ -49,12 +50,5 @@ class AuthFailure extends Failure {
           message: 'Authentication failed: ${authError.message}',
         );
     }
-  }
-
-  // Social Auth Errors
-  factory AuthFailure.fromSocialAuthError(String provider, dynamic error) {
-    return AuthFailure(
-      message: 'Failed to sign in with $provider: ${error.toString()}',
-    );
   }
 }

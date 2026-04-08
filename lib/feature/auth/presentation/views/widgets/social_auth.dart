@@ -7,23 +7,19 @@ class SocialAuth extends StatelessWidget {
     super.key,
     required this.textGoogle,
     required this.textFacebook,
+    required this.onPressedGoogle,
   });
   final String textGoogle;
   final String textFacebook;
+  final Function() onPressedGoogle;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CustomSocial(
-          onTap: () {},
+          onTap: onPressedGoogle,
           image: AssetsManager.googleIcon,
           text: textGoogle,
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.004),
-        CustomSocial(
-          onTap: () {},
-          image: AssetsManager.facebookIcon,
-          text: textFacebook,
         ),
       ],
     );
