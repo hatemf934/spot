@@ -45,4 +45,48 @@ class AuthRepoImplement extends AuthRepo {
       return Left(AuthFailure(message: TextFireauthManager.kAnErrorOccurred));
     }
   }
+
+  @override
+  Future<Either<Failure, UserCredential>> signInWithEmailAndPassword({
+    required String identifier,
+    required String password,
+  }) async {
+    try {
+      identifier = identifier.trim();
+      password = password.trim();
+
+      String? email;
+
+      var result = await FirebaseFirestore.instance
+          .collection('users')
+          .where('phone', isEqualTo: identifier)
+          .limit(1)
+          .get();
+
+      if (result.docs.isEmpty) {
+        result = await FirebaseFirestore.instance
+            .collection('users')
+            .where('userName', isEqualTo: identifier)
+            .limit(1)
+            .get();
+      }
+
+      if (result.docs.isNotEmpty) {
+        email = result.docs.first.data()['email'];
+      }
+
+      if (email == null) {
+        return Left(AuthFailure(message: TextFireauthManager.notFount));
+      }
+
+      final userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      return Right(userCredential);
+    } on FirebaseAuthException catch (e) {
+      return Left(AuthFailure.fromFirebaseAuthException(e));
+    } catch (e) {
+      return Left(AuthFailure(message: TextFireauthManager.kAnErrorOccurred));
+    }
+  }
 }

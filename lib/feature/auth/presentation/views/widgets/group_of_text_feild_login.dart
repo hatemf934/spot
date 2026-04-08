@@ -6,9 +6,15 @@ import 'package:spot/core/utils/text_validate_manager.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_text_from_feild.dart';
 
 class GroupOfTextFeildLogin extends StatefulWidget {
-  const GroupOfTextFeildLogin({super.key, required this.isSubmitted});
+  const GroupOfTextFeildLogin({
+    super.key,
+    required this.isSubmitted,
+    required this.passwordController,
+    required this.userNameAndPhoneController,
+  });
   final bool isSubmitted;
-
+  final TextEditingController passwordController;
+  final TextEditingController userNameAndPhoneController;
   @override
   State<GroupOfTextFeildLogin> createState() => _GroupOfTextFeildLoginState();
 }
@@ -21,6 +27,7 @@ class _GroupOfTextFeildLoginState extends State<GroupOfTextFeildLogin> {
       children: [
         const SizedBox(height: HeightManager.h32),
         CustomTextFromFeild(
+          controller: widget.userNameAndPhoneController,
           validator: (value) =>
               FormValidate(isSubmitted: widget.isSubmitted).validateRequired(
                 value,
@@ -30,6 +37,7 @@ class _GroupOfTextFeildLoginState extends State<GroupOfTextFeildLogin> {
         ),
         const SizedBox(height: HeightManager.h16),
         CustomTextFromFeild(
+          controller: widget.passwordController,
           validator: (value) => FormValidate(
             isSubmitted: widget.isSubmitted,
           ).validateRequired(value, TextValidateManager.passwordRequired),

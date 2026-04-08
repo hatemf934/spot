@@ -6,4 +6,5 @@ class RouteManager {
   static String forgetRoute = "forgetpassword";
   static String otpRoute = "otp";
   static String changePasswordRoute = "changepassword";
+  static String homeviewRoute = "homeview";
 }

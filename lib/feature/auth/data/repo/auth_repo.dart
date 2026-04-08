@@ -12,4 +12,9 @@ abstract class AuthRepo {
     required String dateOfBirth,
     required String gender,
   });
+
+  Future<Either<Failure, UserCredential>> signInWithEmailAndPassword({
+    required String identifier,
+    required String password,
+  });
 }
