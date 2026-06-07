@@ -1,10 +1,10 @@
 class RouteManager {
   RouteManager._();
-  static String splashRoute = "splash";
-  static String loginRoute = "login";
-  static String regesterRoute = "regester";
-  static String forgetRoute = "forgetpassword";
-  static String otpRoute = "otp";
-  static String changePasswordRoute = "changepassword";
-  static String homeviewRoute = "homeview";
+  static const String splashRoute = "splash";
+  static const String loginRoute = "login";
+  static const String regesterRoute = "regester";
+  static const String forgetRoute = "forgetpassword";
+  static const String otpRoute = "otp";
+  static const String changePasswordRoute = "changepassword";
+  static const String homeviewRoute = "homeview";
 }
