@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spot/core/error/auth_faliure.dart';
 
 abstract class AuthRepo {
-  Future<Either<Failure, UserCredential>> signUpWithEmailAndPassword({
+  Future<Either<Failure, User>> signUpWithEmailAndPassword({
     required String email,
     required String password,
     required String fullName,
@@ -13,9 +13,9 @@ abstract class AuthRepo {
     required String gender,
   });
 
-  Future<Either<Failure, UserCredential>> signInWithEmailAndPassword({
-    required String identifier,
+  Future<Either<Failure, User>> signInWithEmailAndPassword({
+    required String email,
     required String password,
   });
-  Future<Either<Failure, UserCredential>> signInWithGoogle();
+  Future<Either<Failure, User>> signInWithGoogle();
 }

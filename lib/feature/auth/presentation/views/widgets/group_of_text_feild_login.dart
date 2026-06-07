@@ -28,12 +28,10 @@ class _GroupOfTextFeildLoginState extends State<GroupOfTextFeildLogin> {
         const SizedBox(height: HeightManager.h32),
         CustomTextFromFeild(
           controller: widget.userNameAndPhoneController,
-          validator: (value) =>
-              FormValidate(isSubmitted: widget.isSubmitted).validateRequired(
-                value,
-                TextValidateManager.usernameAndPhoneRequired,
-              ),
-          text: TextManager.phoneOrUserName,
+          validator: (value) => FormValidate(
+            isSubmitted: widget.isSubmitted,
+          ).validateEmail(value),
+          text: TextManager.emailOptional,
         ),
         const SizedBox(height: HeightManager.h16),
         CustomTextFromFeild(

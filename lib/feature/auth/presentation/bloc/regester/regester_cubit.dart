@@ -30,7 +30,7 @@ class RegesterCubit extends Cubit<RegesterState> {
 
     result.fold(
       (failure) => emit(SignupFailure(errmessage: failure.message)),
-      (userCredential) => emit(SignupSucsses(userCredential: userCredential)),
+      (user) => emit(SignupSucsses(user: user)),
     );
   }
 }

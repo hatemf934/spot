@@ -13,8 +13,8 @@ class HomeView extends StatelessWidget {
       body: Center(
         child: TextButton(
           onPressed: () async {
-            await FirebaseAuth.instance.signOut();
             Navigator.pop(context);
+            await FirebaseAuth.instance.signOut();
           },
           child: Text("sign out"),
         ),

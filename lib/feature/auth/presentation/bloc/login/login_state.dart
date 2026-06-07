@@ -6,8 +6,8 @@ sealed class LoginState {}
 final class LoginInitial extends LoginState {}
 
 final class SignInSucsses extends LoginState {
-  final UserCredential userCredential;
-  SignInSucsses({required this.userCredential});
+  final User user;
+  SignInSucsses({required this.user});
 }
 
 final class SignInFailure extends LoginState {

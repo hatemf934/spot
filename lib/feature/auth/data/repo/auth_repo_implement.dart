@@ -1,15 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:spot/constants.dart';
 import 'package:spot/core/error/auth_faliure.dart';
+import 'package:spot/core/services/fire_base_auth_services.dart';
+import 'package:spot/core/services/fire_store_services.dart';
 import 'package:spot/core/utils/text_fireauth_manager.dart';
 import 'package:spot/feature/auth/data/model/user_model.dart';
 import 'package:spot/feature/auth/data/repo/auth_repo.dart';
 
 class AuthRepoImplement extends AuthRepo {
+  final AuthFireBaseServices authFireBaseServices = AuthFireBaseServices();
+  final FireStoreServices fireStoreServices = FireStoreServices();
   @override
-  Future<Either<Failure, UserCredential>> signUpWithEmailAndPassword({
+  Future<Either<Failure, User>> signUpWithEmailAndPassword({
     required String email,
     required String password,
     required String fullName,
@@ -19,26 +23,22 @@ class AuthRepoImplement extends AuthRepo {
     required String gender,
   }) async {
     try {
-      final userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
+      final userCredential = await authFireBaseServices
+          .signUpWithEmailAndPassword(email: email, password: password);
+      final user = userCredential;
+      UserModel userModel = UserModel(
+        fullName: fullName,
+        userName: userName,
+        phone: phone,
+        email: email,
+        dateOfBirth: dateOfBirth,
+        gender: gender,
+        uId: user.uid,
+        password: password,
+      );
 
-      if (userCredential.user != null) {
-        UserModel userModel = UserModel(
-          fullName: fullName,
-          userName: userName,
-          phone: phone,
-          email: email,
-          dateOfBirth: dateOfBirth,
-          gender: gender,
-          uId: userCredential.user!.uid,
-          password: password,
-        );
+      await addUserData(user: userModel.toMap());
 
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(userCredential.user!.uid)
-            .set(userModel.toMap());
-      }
       return Right(userCredential);
     } on FirebaseAuthException catch (e) {
       return Left(AuthFailure.fromFirebaseAuthException(e));
@@ -47,43 +47,30 @@ class AuthRepoImplement extends AuthRepo {
     }
   }
 
+  Future<void> addUserData({required Map<String, dynamic> user}) {
+    return fireStoreServices.addData(
+      path: userCollection,
+      data: user,
+      documentId: user['uId'],
+    );
+  }
+
   @override
-  Future<Either<Failure, UserCredential>> signInWithEmailAndPassword({
-    required String identifier,
+  Future<Either<Failure, User>> signInWithEmailAndPassword({
+    required String email,
     required String password,
   }) async {
     try {
-      identifier = identifier.trim();
+      email = email.trim();
       password = password.trim();
+      final user = await authFireBaseServices.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-      String? email;
+      await getUserData(documentId: user.uid);
 
-      var result = await FirebaseFirestore.instance
-          .collection('users')
-          .where('phone', isEqualTo: identifier)
-          .limit(1)
-          .get();
-
-      if (result.docs.isEmpty) {
-        result = await FirebaseFirestore.instance
-            .collection('users')
-            .where('userName', isEqualTo: identifier)
-            .limit(1)
-            .get();
-      }
-
-      if (result.docs.isNotEmpty) {
-        email = result.docs.first.data()['email'];
-      }
-
-      if (email == null) {
-        return Left(AuthFailure(message: TextFireauthManager.notFount));
-      }
-
-      final userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-
-      return Right(userCredential);
+      return Right(user);
     } on FirebaseAuthException catch (e) {
       return Left(AuthFailure.fromFirebaseAuthException(e));
     } catch (e) {
@@ -91,8 +78,16 @@ class AuthRepoImplement extends AuthRepo {
     }
   }
 
+  Future<UserModel> getUserData({required String documentId}) async {
+    var data = await fireStoreServices.getData(
+      path: userCollection,
+      documentId: documentId,
+    );
+    return UserModel.fromMap(data);
+  }
+
   @override
-  Future<Either<Failure, UserCredential>> signInWithGoogle() async {
+  Future<Either<Failure, User>> signInWithGoogle() async {
     try {
       final googleSignIn = GoogleSignIn.instance;
       await googleSignIn.initialize();
@@ -109,7 +104,9 @@ class AuthRepoImplement extends AuthRepo {
 
       final credential = GoogleAuthProvider.credential(idToken: auth.idToken);
       return Right(
-        await FirebaseAuth.instance.signInWithCredential(credential),
+        await FirebaseAuth.instance
+            .signInWithCredential(credential)
+            .then((userCredential) => userCredential.user!),
       );
     } on FirebaseAuthException catch (e) {
       return Left(AuthFailure.fromFirebaseAuthException(e));

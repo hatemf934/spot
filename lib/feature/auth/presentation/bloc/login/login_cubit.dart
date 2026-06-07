@@ -10,19 +10,17 @@ class LoginCubit extends Cubit<LoginState> {
   final AuthRepo authRepo;
 
   Future<void> loginUser({
-    required String identifier,
+    required String email,
     required String password,
   }) async {
     emit(SignInLoading());
-
     var result = await authRepo.signInWithEmailAndPassword(
-      identifier: identifier,
+      email: email,
       password: password,
     );
-
     result.fold(
       (failure) => emit(SignInFailure(errmessage: failure.message)),
-      (userCredential) => emit(SignInSucsses(userCredential: userCredential)),
+      (user) => emit(SignInSucsses(user: user)),
     );
   }
 
@@ -31,7 +29,7 @@ class LoginCubit extends Cubit<LoginState> {
     var result = await authRepo.signInWithGoogle();
     result.fold(
       (failure) => emit(SignInFailure(errmessage: failure.message)),
-      (userCredential) => emit(SignInSucsses(userCredential: userCredential)),
+      (user) => emit(SignInSucsses(user: user)),
     );
   }
 }

@@ -84,7 +84,7 @@ class _BodyOfLoginState extends State<BodyOfLogin> {
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     if (formkey.currentState!.validate()) {
                       BlocProvider.of<LoginCubit>(context).loginUser(
-                        identifier: userNameAndPhoneController.text,
+                        email: userNameAndPhoneController.text,
                         password: passwordController.text,
                       );
                     }

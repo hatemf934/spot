@@ -29,4 +29,17 @@ class UserModel {
       'uId': uId,
     };
   }
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      fullName: map['fullName'],
+      userName: map['userName'],
+      phone: map['phone'],
+      email: map['email'],
+      dateOfBirth: map['dateOfBirth'],
+      gender: map['gender'],
+      uId: map['uId'],
+      password: map['password'] ?? '',
+    );
+  }
 }

@@ -6,8 +6,8 @@ sealed class RegesterState {}
 final class RegesterInitial extends RegesterState {}
 
 final class SignupSucsses extends RegesterState {
-  final UserCredential userCredential;
-  SignupSucsses({required this.userCredential});
+  final User user;
+  SignupSucsses({required this.user});
 }
 
 final class SignupFailure extends RegesterState {
