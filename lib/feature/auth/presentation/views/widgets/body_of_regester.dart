@@ -11,7 +11,7 @@ import 'package:spot/feature/auth/presentation/views/widgets/custom_button.dart'
 import 'package:spot/feature/auth/presentation/views/widgets/group_of_text_feild_regester.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/text_of_login.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spot/feature/home/presentation/view/home_view.dart';
+import 'package:spot/main_screen.dart';
 
 class BodyOfRegester extends StatefulWidget {
   const BodyOfRegester({super.key});
@@ -51,7 +51,7 @@ class _BodyOfRegesterState extends State<BodyOfRegester> {
         BlocListener<LoginCubit, LoginState>(
           listener: (context, state) {
             if (state is SignInSucsses) {
-              Navigator.pushReplacementNamed(context, HomeView.id);
+              Navigator.pushReplacementNamed(context, MainScreen.id);
             } else if (state is SignInFailure) {
               CustomAswesomeDialog().AwesomeDialogError(
                 context: context,
@@ -63,7 +63,7 @@ class _BodyOfRegesterState extends State<BodyOfRegester> {
         BlocListener<RegesterCubit, RegesterState>(
           listener: (context, state) {
             if (state is SignupSucsses) {
-              Navigator.pushReplacementNamed(context, HomeView.id);
+              Navigator.pushReplacementNamed(context, MainScreen.id);
             } else if (state is SignupFailure) {
               CustomAswesomeDialog().AwesomeDialogError(
                 context: context,

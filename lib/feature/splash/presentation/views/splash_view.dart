@@ -5,7 +5,7 @@ import 'package:spot/core/utils/assets_manager.dart';
 import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/feature/auth/presentation/views/login_view.dart';
-import 'package:spot/feature/home/presentation/view/home_view.dart';
+import 'package:spot/main_screen.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -51,7 +51,7 @@ class _SplashViewState extends State<SplashView> {
       if (!mounted) return;
       FirebaseAuth.instance.currentUser == null
           ? Navigator.pushReplacementNamed(context, LoginView.id)
-          : Navigator.pushReplacementNamed(context, HomeView.id);
+          : Navigator.pushReplacementNamed(context, MainScreen.id);
     });
   }
 }

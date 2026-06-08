@@ -6,5 +6,5 @@ class RouteManager {
   static const String forgetRoute = "forgetpassword";
   static const String otpRoute = "otp";
   static const String changePasswordRoute = "changepassword";
-  static const String homeviewRoute = "homeview";
+  static const String screenview = "screenview";
 }

@@ -42,4 +42,9 @@ class TextManager {
       "Please enter the verification code you received from";
   static const String resedVerification = "Resend verification code";
   static const String save = "Save";
+  static const String home = "Home";
+  static const String plans = "Plans";
+  static const String explore = "Explore";
+  static const String profile = "Profile";
+  static const String events = "Events";
 }
