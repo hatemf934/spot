@@ -47,4 +47,11 @@ class TextManager {
   static const String explore = "Explore";
   static const String profile = "Profile";
   static const String events = "Events";
+  static const String welcomeBackSpot = "Welcome Back 👋";
+  static const String yourLocation = "Your Location ";
+  static const String alexandria = "Alexandria";
+  static const String spots = "Spots";
+  static const String seeAll = "See All";
+  static const String restaurants = "Restaurants";
+  static const String spotsCount = "125 Spots";
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/font_manager.dart';
 
 class Styles {
@@ -12,6 +13,10 @@ class Styles {
   static TextStyle textStyle14 = TextStyle(
     fontSize: FontManager.f14,
     fontWeight: FontWeight.w400,
+  );
+  static TextStyle textStyle13 = TextStyle(
+    fontSize: FontManager.f13,
+    color: ColorManager.witheColor,
   );
   static TextStyle textStyle15 = TextStyle(
     fontSize: FontManager.f15,
