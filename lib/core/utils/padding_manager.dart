@@ -1,6 +1,8 @@
 class PaddingManager {
   PaddingManager._();
   static const double p5 = 5;
+  static const double p7 = 7;
+  static const double p3 = 3;
   static const double p20 = 20;
   static const double p16 = 16;
   static const double p15 = 15;

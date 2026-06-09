@@ -8,7 +8,7 @@ class Styles {
   static const TextStyle textStyle12 = TextStyle(
     fontSize: FontManager.f12,
     fontWeight: FontWeight.w400,
-    color: Color(0xffA5ABBF),
+    color: ColorManager.colorCoolGray,
   );
   static const TextStyle textStyle14 = TextStyle(
     fontSize: FontManager.f14,
@@ -42,5 +42,10 @@ class Styles {
   static const TextStyle textStyle26 = TextStyle(
     fontSize: FontManager.f26,
     fontWeight: FontWeight.bold,
+  );
+  static const TextStyle isOpenText12 = TextStyle(
+    fontSize: FontManager.f12,
+    fontWeight: FontWeight.w600,
+    color: ColorManager.colorSuccess,
   );
 }
