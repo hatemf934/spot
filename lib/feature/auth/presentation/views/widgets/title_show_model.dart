@@ -16,7 +16,7 @@ class TitleShowModel extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.15,
           height: HeightManager.h5,
           decoration: BoxDecoration(
-            color: ColorManager.greyColor,
+            color: ColorManager.greyColor400,
             borderRadius: BorderRadius.circular(RaduisManager.r10),
           ),
         ),

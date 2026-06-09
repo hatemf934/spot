@@ -40,7 +40,7 @@ class GenderSelected extends StatelessWidget {
           thickness: 1,
           endIndent: PaddingManager.p20,
           indent: PaddingManager.p20,
-          color: ColorManager.greyColor,
+          color: ColorManager.greyColor400,
           height: HeightManager.h5,
         ),
         RadioListTile(

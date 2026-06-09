@@ -7,4 +7,5 @@ class RouteManager {
   static const String otpRoute = "otp";
   static const String changePasswordRoute = "changepassword";
   static const String screenview = "screenview";
+  static const String cardview = "cardview";
 }

@@ -25,7 +25,7 @@ class WelcomeHeader extends StatelessWidget {
                 text: TextSpan(
                   style: TextStyle(
                     fontSize: FontManager.f14,
-                    color: ColorManager.greyColor,
+                    color: ColorManager.greyColor400,
                   ),
                   children: [
                     TextSpan(text: TextManager.yourLocation),

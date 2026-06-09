@@ -8,8 +8,10 @@ class ColorManager {
   static const Color navyBlue = Color(0xffA5ABBF);
   static const Color witheColor = Colors.white;
   static const Color scaffoldColor = Color(0xffFAFAFA);
+  static Color greyColor400 = Colors.grey.shade400;
+  static Color greyColor300 = Colors.grey.shade300;
+  static Color greyColor = Colors.grey;
   static const Color borderColor = Color(0xfff0f0f3);
-  static Color greyColor = Colors.grey.shade400;
   static const Color orangeColor = Color(0xFFFF7043);
   static const Color semiTransparentWhite = Color(0x40F5F5F5);
 }

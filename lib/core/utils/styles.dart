@@ -5,36 +5,41 @@ import 'package:spot/core/utils/font_manager.dart';
 
 class Styles {
   Styles._();
-  static TextStyle textStyle12 = TextStyle(
+  static const TextStyle textStyle12 = TextStyle(
     fontSize: FontManager.f12,
     fontWeight: FontWeight.w400,
     color: Color(0xffA5ABBF),
   );
-  static TextStyle textStyle14 = TextStyle(
+  static const TextStyle textStyle14 = TextStyle(
     fontSize: FontManager.f14,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle textStyle13 = TextStyle(
+  static const TextStyle textStyle13 = TextStyle(
     fontSize: FontManager.f13,
     color: ColorManager.witheColor,
   );
-  static TextStyle textStyle15 = TextStyle(
+  static const TextStyle textStyle15 = TextStyle(
     fontSize: FontManager.f15,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle textStyle16 = TextStyle(
+  static const TextStyle textStyle16 = TextStyle(
     fontSize: FontManager.f16,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle textStyle20 = TextStyle(
+  static const TextStyle textStyle20 = TextStyle(
     fontSize: FontManager.f20,
     fontWeight: FontWeight.bold,
   );
-  static TextStyle textStyle22 = TextStyle(
+  static const TextStyle textStyle22 = TextStyle(
     fontSize: FontManager.f22,
     fontWeight: FontWeight.bold,
   );
-  static TextStyle textStyle26 = TextStyle(
+  static const TextStyle textStyleBlack24 = TextStyle(
+    fontSize: FontManager.f24,
+    fontWeight: FontWeight.bold,
+    color: ColorManager.blackColor,
+  );
+  static const TextStyle textStyle26 = TextStyle(
     fontSize: FontManager.f26,
     fontWeight: FontWeight.bold,
   );
