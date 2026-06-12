@@ -6,7 +6,7 @@ import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/styles.dart';
 import 'package:spot/core/utils/text_manager.dart';
 import 'package:spot/core/utils/width_manager.dart';
-import 'package:spot/feature/home/presentation/view/card_view.dart';
+import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
 
 class BodyOfCatogeryCard extends StatelessWidget {
   const BodyOfCatogeryCard({super.key, required this.image});
@@ -41,7 +41,7 @@ class BodyOfCatogeryCard extends StatelessWidget {
               const Spacer(),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, CardView.id);
+                  Navigator.pushNamed(context, CardViewVertical.id);
                 },
                 child: Container(
                   width: WidthManager.w25,

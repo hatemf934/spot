@@ -5,8 +5,13 @@ import 'package:spot/core/utils/styles.dart';
 
 class CustomAppBarCardView extends StatelessWidget
     implements PreferredSizeWidget {
-  const CustomAppBarCardView({super.key});
-
+  const CustomAppBarCardView({
+    super.key,
+    required this.onPressed,
+    required this.iconData,
+  });
+  final VoidCallback onPressed;
+  final IconData iconData;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -14,8 +19,8 @@ class CustomAppBarCardView extends StatelessWidget
       title: const Text('Restaurants', style: Styles.textStyleBlack24),
       actions: [
         IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.location_on, size: FontManager.f28),
+          onPressed: onPressed,
+          icon: Icon(iconData, size: FontManager.f28),
         ),
       ],
     );

@@ -5,7 +5,8 @@ import 'package:spot/feature/auth/presentation/views/regester_view.dart';
 import 'package:spot/feature/forgrtPassword/presentation/view/change_password.dart';
 import 'package:spot/feature/forgrtPassword/presentation/view/forget_password.dart';
 import 'package:spot/feature/forgrtPassword/presentation/view/otp_view.dart';
-import 'package:spot/feature/home/presentation/view/card_view.dart';
+import 'package:spot/feature/home/presentation/view/card_view_horzintal.dart';
+import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
 import 'package:spot/feature/splash/presentation/views/splash_view.dart';
 import 'package:spot/main_screen.dart';
 
@@ -25,8 +26,10 @@ Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(builder: (context) => const OtpView());
     case RouteManager.forgetRoute:
       return MaterialPageRoute(builder: (context) => const ForgetPassword());
-    case RouteManager.cardview:
-      return MaterialPageRoute(builder: (context) => const CardView());
+    case RouteManager.cardviewVertical:
+      return MaterialPageRoute(builder: (context) => const CardViewVertical());
+    case RouteManager.cardvievHorzental:
+      return MaterialPageRoute(builder: (context) => const CardViewHorzintal());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
