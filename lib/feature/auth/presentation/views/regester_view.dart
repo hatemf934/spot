@@ -16,21 +16,17 @@ class RegesterView extends StatelessWidget {
       backgroundColor: ColorManager.scaffoldColor,
       body: BlocBuilder<UserCubit, UserState>(
         builder: (context, state) {
-          return BlocBuilder<UserCubit, UserState>(
-            builder: (context, state) {
-              return ModalProgressHUD(
-                progressIndicator: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    ColorManager.primaryColor,
-                  ),
-                ),
-                inAsyncCall: state is SignupLoading || state is SignInLoading,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: PaddingManager.p20),
-                  child: BodyOfRegester(),
-                ),
-              );
-            },
+          return ModalProgressHUD(
+            progressIndicator: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                ColorManager.primaryColor,
+              ),
+            ),
+            inAsyncCall: state is SignupLoading || state is SignInLoading,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: PaddingManager.p20),
+              child: BodyOfRegester(),
+            ),
           );
         },
       ),

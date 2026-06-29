@@ -22,6 +22,11 @@ class BodyOfRegester extends StatefulWidget {
 class _BodyOfRegesterState extends State<BodyOfRegester> {
   bool isSubmitted = false;
   final GlobalKey<FormState> formKey = GlobalKey();
+  @override
+  void dispose() {
+    context.read<UserCubit>().clearSignUpFields();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

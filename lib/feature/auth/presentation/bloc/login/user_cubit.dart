@@ -10,9 +10,6 @@ class UserCubit extends Cubit<UserState> {
   UserCubit(this.authRepo) : super(LoginInitial());
   final AuthRepo authRepo;
 
-  GlobalKey<FormState> signInFormKey = GlobalKey();
-  GlobalKey<FormState> signUpFormKey = GlobalKey();
-
   TextEditingController signInEmail = TextEditingController();
   TextEditingController signInPassword = TextEditingController();
 
@@ -21,7 +18,6 @@ class UserCubit extends Cubit<UserState> {
   TextEditingController signUpPhoneNumber = TextEditingController();
   TextEditingController signUpEmail = TextEditingController();
   TextEditingController signUpPassword = TextEditingController();
-  TextEditingController signUpconfirmPassword = TextEditingController();
   TextEditingController signUpGender = TextEditingController();
   TextEditingController signUpDateBrith = TextEditingController();
 
@@ -62,5 +58,35 @@ class UserCubit extends Cubit<UserState> {
       (failure) => emit(SignInFailure(errmessage: failure.message)),
       (user) => emit(SignInSucsses(user: user)),
     );
+  }
+
+  void clearSignUpFields() {
+    signUpEmail.clear();
+    signUpPassword.clear();
+    signUpFullName.clear();
+    signUpDateBrith.clear();
+    signUpGender.clear();
+    signUpPhoneNumber.clear();
+    signUpUserName.clear();
+  }
+
+  void clearSignInFields() {
+    signInEmail.clear();
+    signInPassword.clear();
+  }
+
+  @override
+  Future<void> close() {
+    signInEmail.dispose();
+    signInPassword.dispose();
+    signUpFullName.dispose();
+    signUpUserName.dispose();
+    signUpPhoneNumber.dispose();
+    signUpEmail.dispose();
+    signUpPassword.dispose();
+    signUpGender.dispose();
+    signUpDateBrith.dispose();
+
+    return super.close();
   }
 }

@@ -1,6 +1,6 @@
 class TextFireauthManager {
   TextFireauthManager._();
-  static String kAnErrorOccurred = 'An unexpected error occurred';
+  static String kAnErrorOccurred =
+      'Something went wrong. Please try again later.';
   static String kError = 'Error';
-  static String notFount = 'No user found with this phone or username.';
 }

@@ -26,6 +26,12 @@ class _BodyOfLoginState extends State<BodyOfLogin> {
   bool isSubmitted = false;
   final GlobalKey<FormState> formKey = GlobalKey();
   @override
+  void dispose() {
+    context.read<UserCubit>().clearSignInFields();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocListener<UserCubit, UserState>(
       listener: (context, state) {

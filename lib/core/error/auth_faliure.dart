@@ -6,48 +6,59 @@ abstract class Failure {
 }
 
 class AuthFailure extends Failure {
-  final bool isCancelled;
-  AuthFailure({required super.message, this.isCancelled = false});
-
+  AuthFailure({required super.message});
   factory AuthFailure.fromFirebaseAuthException(
     FirebaseAuthException authError,
   ) {
     switch (authError.code) {
       case 'email-already-in-use':
         return AuthFailure(
-          message: 'The email address is already in use by another account.',
+          message: 'This email is already registered. Try logging in instead.',
         );
       case 'invalid-email':
-        return AuthFailure(message: 'The email address is badly formatted.');
+        return AuthFailure(message: 'Please enter a valid email address.');
       case 'operation-not-allowed':
         return AuthFailure(
-          message: 'This operation is not allowed. Contact support.',
+          message:
+              'This sign-in method is not enabled. Please contact support.',
         );
       case 'weak-password':
         return AuthFailure(
-          message: 'The password is too weak. Choose a stronger password.',
+          message:
+              'Password is too weak. Use at least 8 characters with letters and numbers.',
         );
       case 'user-disabled':
         return AuthFailure(
-          message: 'This user has been disabled. Contact support.',
+          message: 'Your account has been suspended. Please contact support.',
         );
       case 'user-not-found':
-        return AuthFailure(message: 'No user found with this email address.');
+        return AuthFailure(
+          message:
+              'No account found with this email. Would you like to sign up?',
+        );
       case 'wrong-password':
-        return AuthFailure(message: 'Wrong password. Please try again.');
+        return AuthFailure(
+          message:
+              'Incorrect password. Please try again or reset your password.',
+        );
       case 'too-many-requests':
-        return AuthFailure(message: 'Too many requests. Try again later.');
+        return AuthFailure(
+          message:
+              'Too many failed attempts. Please wait a few minutes and try again.',
+        );
       case 'network-request-failed':
         return AuthFailure(
-          message: 'Network error. Check your internet connection.',
+          message:
+              'No internet connection. Please check your network and try again.',
         );
       case 'invalid-credential':
         return AuthFailure(
-          message: 'The login information is incorrect or expired.',
+          message:
+              'Incorrect email or password. Please check your details and try again.',
         );
       default:
         return AuthFailure(
-          message: 'Authentication failed: ${authError.message}',
+          message: 'Something went wrong. Please try again later.',
         );
     }
   }
