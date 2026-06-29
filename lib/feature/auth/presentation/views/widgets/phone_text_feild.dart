@@ -14,7 +14,7 @@ class PhoneTextFeild extends StatelessWidget {
     return Theme(
       data: Theme.of(context).copyWith(
         textSelectionTheme: TextSelectionThemeData(
-          selectionColor: ColorManager.primaryColor.withOpacity(0.4),
+          selectionColor: ColorManager.primaryColor.withAlpha(102),
           selectionHandleColor: ColorManager.primaryColor,
         ),
       ),

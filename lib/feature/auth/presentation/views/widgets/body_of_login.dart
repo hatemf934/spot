@@ -5,7 +5,7 @@ import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/styles.dart';
 import 'package:spot/core/utils/text_manager.dart';
-import 'package:spot/feature/auth/presentation/bloc/login/login_cubit.dart';
+import 'package:spot/feature/auth/presentation/bloc/login/user_cubit.dart';
 import 'package:spot/feature/auth/presentation/views/regester_view.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/another_body_of_login_section.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_button.dart';
@@ -24,21 +24,10 @@ class BodyOfLogin extends StatefulWidget {
 
 class _BodyOfLoginState extends State<BodyOfLogin> {
   bool isSubmitted = false;
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController userNameAndPhoneController =
-      TextEditingController();
-  @override
-  void dispose() {
-    super.dispose();
-    passwordController.dispose();
-    userNameAndPhoneController.dispose();
-  }
-
-  final GlobalKey<FormState> formkey = GlobalKey();
+  final GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<UserCubit, UserState>(
       listener: (context, state) {
         if (state is SignInSucsses) {
           Navigator.pushReplacementNamed(context, MainScreen.id);
@@ -52,20 +41,16 @@ class _BodyOfLoginState extends State<BodyOfLogin> {
       child: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: PaddingManager.p20),
         child: Form(
-          key: formkey,
+          key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: screenHeight * 0.08),
+              SizedBox(height: HeightManager.h65),
               const TitleAuth(
                 title: TextManager.welcomeBack,
                 subTitle: TextManager.enterLoginInfo,
               ),
-              GroupOfTextFeildLogin(
-                passwordController: passwordController,
-                userNameAndPhoneController: userNameAndPhoneController,
-                isSubmitted: isSubmitted,
-              ),
+              GroupOfTextFeildLogin(isSubmitted: isSubmitted),
               Align(
                 alignment: Alignment.centerRight,
                 child: CustomTextButton(
@@ -82,11 +67,10 @@ class _BodyOfLoginState extends State<BodyOfLogin> {
                     isSubmitted = true;
                   });
                   WidgetsBinding.instance.addPostFrameCallback((_) {
-                    if (formkey.currentState!.validate()) {
-                      BlocProvider.of<LoginCubit>(context).loginUser(
-                        email: userNameAndPhoneController.text,
-                        password: passwordController.text,
-                      );
+                    if (formKey.currentState!.validate()) {
+                      BlocProvider.of<UserCubit>(
+                        context,
+                      ).signInWithEmailAndPassword();
                     }
                   });
                 },

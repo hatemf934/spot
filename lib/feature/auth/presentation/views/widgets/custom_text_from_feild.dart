@@ -3,53 +3,73 @@ import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/raduis_manager.dart';
 import 'package:spot/core/utils/styles.dart';
 
-class CustomTextFromFeild extends StatelessWidget {
+class CustomTextFromFeild extends StatefulWidget {
   const CustomTextFromFeild({
     super.key,
     required this.text,
-    this.onPressedIcons,
-    this.iconData,
     this.obscureText = false,
     this.validator,
     this.prefixIcon,
     this.controller,
+    this.iconData,
+    this.onPressedIcons,
     this.readOnly = false,
   });
   final String text;
-  final Function()? onPressedIcons;
-  final IconData? iconData;
   final bool obscureText;
+  final IconData? iconData;
   final FormFieldValidator<String>? validator;
   final Widget? prefixIcon;
   final TextEditingController? controller;
   final bool readOnly;
+  final VoidCallback? onPressedIcons;
+
+  @override
+  State<CustomTextFromFeild> createState() => _CustomTextFromFeildState();
+}
+
+class _CustomTextFromFeildState extends State<CustomTextFromFeild> {
+  late bool obscureText = widget.obscureText;
   @override
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
         textSelectionTheme: TextSelectionThemeData(
-          selectionColor: ColorManager.primaryColor.withOpacity(0.4),
+          selectionColor: ColorManager.primaryColor.withAlpha(102),
           selectionHandleColor: ColorManager.primaryColor,
         ),
       ),
       child: TextFormField(
-        controller: controller,
-        validator: validator,
+        controller: widget.controller,
+        validator: widget.validator,
         obscureText: obscureText,
-        readOnly: readOnly,
+        readOnly: widget.readOnly,
         cursorColor: ColorManager.primaryColor,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         style: Styles.textStyle14.copyWith(color: ColorManager.blackColor),
         decoration: InputDecoration(
-          labelText: text,
-          hintText: text,
+          labelText: widget.text,
+          hintText: widget.text,
           hintStyle: Styles.textStyle16.copyWith(color: ColorManager.navyBlue),
           labelStyle: Styles.textStyle14.copyWith(color: ColorManager.navyBlue),
-          suffixIcon: IconButton(
-            onPressed: onPressedIcons,
-            icon: Icon(iconData, color: ColorManager.primaryColor),
-          ),
-          prefixIcon: prefixIcon,
+          suffixIcon: widget.obscureText
+              ? IconButton(
+                  onPressed: () {
+                    setState(() {
+                      obscureText = !obscureText;
+                    });
+                  },
+                  icon: Icon(
+                    obscureText ? Icons.visibility_off : Icons.visibility,
+                    color: ColorManager.primaryColor,
+                  ),
+                )
+              : IconButton(
+                  onPressed: widget.onPressedIcons,
+                  icon: Icon(widget.iconData, color: ColorManager.primaryColor),
+                ),
+
+          prefixIcon: widget.prefixIcon,
           errorStyle: TextStyle(color: ColorManager.primaryColor),
           enabledBorder: buildOutlineInputBorder(
             color: ColorManager.borderColor,

@@ -3,8 +3,7 @@ import 'package:spot/core/helpers/custom_aswesome_dialog.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/text_manager.dart';
-import 'package:spot/feature/auth/presentation/bloc/login/login_cubit.dart';
-import 'package:spot/feature/auth/presentation/bloc/regester/regester_cubit.dart';
+import 'package:spot/feature/auth/presentation/bloc/login/user_cubit.dart';
 import 'package:spot/feature/auth/presentation/views/login_view.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/another_body_of_login_section.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_button.dart';
@@ -22,33 +21,13 @@ class BodyOfRegester extends StatefulWidget {
 
 class _BodyOfRegesterState extends State<BodyOfRegester> {
   bool isSubmitted = false;
-  final GlobalKey<FormState> formkey = GlobalKey();
-  final TextEditingController fullNameController = TextEditingController();
-  final TextEditingController userNameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController dateController = TextEditingController();
-  final TextEditingController genderController = TextEditingController();
-
-  @override
-  void dispose() {
-    fullNameController.dispose();
-    userNameController.dispose();
-    phoneController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    dateController.dispose();
-    genderController.dispose();
-    super.dispose();
-  }
+  final GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
     return MultiBlocListener(
       listeners: [
-        BlocListener<LoginCubit, LoginState>(
+        BlocListener<UserCubit, UserState>(
           listener: (context, state) {
             if (state is SignInSucsses) {
               Navigator.pushReplacementNamed(context, MainScreen.id);
@@ -60,7 +39,7 @@ class _BodyOfRegesterState extends State<BodyOfRegester> {
             }
           },
         ),
-        BlocListener<RegesterCubit, RegesterState>(
+        BlocListener<UserCubit, UserState>(
           listener: (context, state) {
             if (state is SignupSucsses) {
               Navigator.pushReplacementNamed(context, MainScreen.id);
@@ -77,26 +56,17 @@ class _BodyOfRegesterState extends State<BodyOfRegester> {
       child: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: PaddingManager.p20),
         child: Form(
-          key: formkey,
+          key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: screenHeight * 0.05),
+              SizedBox(height: HeightManager.h40),
               TitleAuth(
                 title: TextManager.signUp,
                 subTitle: TextManager.signUpSubTitle,
               ),
               const SizedBox(height: HeightManager.h32),
-              GroupOfTextFeildRegester(
-                isSubmitted: isSubmitted,
-                fullNameController: fullNameController,
-                userNameController: userNameController,
-                phoneController: phoneController,
-                emailController: emailController,
-                passwordController: passwordController,
-                dateController: dateController,
-                genderController: genderController,
-              ),
+              GroupOfTextFeildRegester(isSubmitted: isSubmitted),
               const SizedBox(height: HeightManager.h24),
               CustomButton(
                 onTap: () {
@@ -104,18 +74,10 @@ class _BodyOfRegesterState extends State<BodyOfRegester> {
                     isSubmitted = true;
                   });
                   WidgetsBinding.instance.addPostFrameCallback((_) {
-                    if (formkey.currentState!.validate()) {
-                      BlocProvider.of<RegesterCubit>(
+                    if (formKey.currentState!.validate()) {
+                      BlocProvider.of<UserCubit>(
                         context,
-                      ).signUpWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text,
-                        fullName: fullNameController.text,
-                        phone: phoneController.text,
-                        userName: userNameController.text,
-                        dateOfBirth: dateController.text,
-                        gender: genderController.text,
-                      );
+                      ).signUpWithEmailAndPassword();
                     }
                   });
                 },

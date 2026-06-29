@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spot/core/utils/height_manger.dart';
-import 'package:spot/feature/auth/presentation/bloc/login/login_cubit.dart';
+import 'package:spot/feature/auth/presentation/bloc/login/user_cubit.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/auth_switch_row.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/or_divider.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/social_auth.dart';
@@ -29,7 +29,7 @@ class AnotherAuthSection extends StatelessWidget {
         const SizedBox(height: HeightManager.h30),
         SocialAuth(
           onPressedGoogle: () {
-            BlocProvider.of<LoginCubit>(context).signInWithGoogle();
+            BlocProvider.of<UserCubit>(context).signInWithGoogle();
           },
           textGoogle: textGoogle,
           textFacebook: textFacebook,

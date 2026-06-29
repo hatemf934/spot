@@ -3,7 +3,7 @@ import 'package:spot/core/helpers/form_validate.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/custom_text_from_feild.dart';
 
-class PasswordTextFeild extends StatefulWidget {
+class PasswordTextFeild extends StatelessWidget {
   const PasswordTextFeild({
     super.key,
     required this.isSubmitted,
@@ -16,43 +16,23 @@ class PasswordTextFeild extends StatefulWidget {
   final String hintConfirmPassword;
   final TextEditingController passwordController;
   @override
-  State<PasswordTextFeild> createState() => _PasswordTextFeildState();
-}
-
-class _PasswordTextFeildState extends State<PasswordTextFeild> {
-  bool obscureTextPassword = false;
-  bool obscureTextConfirm = false;
-  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CustomTextFromFeild(
-          controller: widget.passwordController,
-          validator: (value) => FormValidate(
-            isSubmitted: widget.isSubmitted,
-          ).validatePassword(value),
-          text: widget.hintPassword,
-          obscureText: !obscureTextPassword,
-          onPressedIcons: () => setState(() {
-            obscureTextPassword = !obscureTextPassword;
-          }),
-          iconData: obscureTextPassword
-              ? Icons.visibility
-              : Icons.visibility_off,
+          controller: passwordController,
+          validator: (value) =>
+              FormValidate(isSubmitted: isSubmitted).validatePassword(value),
+          text: hintPassword,
+          obscureText: true,
         ),
         SizedBox(height: HeightManager.h12),
         CustomTextFromFeild(
           validator: (value) => FormValidate(
-            isSubmitted: widget.isSubmitted,
-          ).validateConfirmPassword(value, widget.passwordController.text),
-          text: widget.hintConfirmPassword,
-          obscureText: !obscureTextConfirm,
-          onPressedIcons: () => setState(() {
-            obscureTextConfirm = !obscureTextConfirm;
-          }),
-          iconData: obscureTextConfirm
-              ? Icons.visibility
-              : Icons.visibility_off,
+            isSubmitted: isSubmitted,
+          ).validateConfirmPassword(value, passwordController.text),
+          text: hintConfirmPassword,
+          obscureText: true,
         ),
       ],
     );

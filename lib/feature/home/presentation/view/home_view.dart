@@ -8,16 +8,16 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SpotsScreen(),
-      // body: Center(
-      //   child: TextButton(
-      //     onPressed: () async {
-      //       Navigator.pop(context);
-      //       await FirebaseAuth.instance.signOut();
-      //     },
-      //     child: Text("sign out"),
-      //   ),
-      // ),
+      // body: SpotsScreen(),
+      body: Center(
+        child: TextButton(
+          onPressed: () async {
+            Navigator.pop(context);
+            await FirebaseAuth.instance.signOut();
+          },
+          child: Text("sign out"),
+        ),
+      ),
     );
   }
 }

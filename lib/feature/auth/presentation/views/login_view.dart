@@ -4,7 +4,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/route_manager.dart';
-import 'package:spot/feature/auth/presentation/bloc/login/login_cubit.dart';
+import 'package:spot/feature/auth/presentation/bloc/login/user_cubit.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/body_of_login.dart';
 
 class LoginView extends StatelessWidget {
@@ -14,7 +14,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.scaffoldColor,
-      body: BlocBuilder<LoginCubit, LoginState>(
+      body: BlocBuilder<UserCubit, UserState>(
         builder: (context, state) {
           return ModalProgressHUD(
             progressIndicator: CircularProgressIndicator(

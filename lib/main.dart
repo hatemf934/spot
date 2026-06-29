@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spot/core/helpers/on_generate.dart';
 import 'package:spot/feature/auth/data/repo/auth_repo_implement.dart';
-import 'package:spot/feature/auth/presentation/bloc/login/login_cubit.dart';
+import 'package:spot/feature/auth/presentation/bloc/login/user_cubit.dart';
 import 'package:spot/feature/splash/presentation/views/splash_view.dart';
 import 'package:spot/firebase_options.dart';
 
@@ -19,7 +19,7 @@ class Spot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(AuthRepoImplement()),
+      create: (context) => UserCubit(AuthRepoImplement()),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: onGenerateRoute,
