@@ -16,7 +16,6 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-  // @override
   @override
   void initState() {
     super.initState();
@@ -29,25 +28,17 @@ class _SplashViewState extends State<SplashView> {
       backgroundColor: ColorManager.splashColor,
       body: Center(
         child: ShakeY(
-          from: 20,
+          from: 10,
           duration: Duration(seconds: 5),
           infinite: true,
-          child: Stack(
-            children: [
-              Image.asset(AssetsManager.logoSpot),
-              Positioned(
-                right: MediaQuery.of(context).size.width * 0.12,
-                child: Image.asset(AssetsManager.vectorSpot),
-              ),
-            ],
-          ),
+          child: Image.asset(AssetsManager.logoSpot),
         ),
       ),
     );
   }
 
   void navigatorDelayed() {
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 4), () {
       if (!mounted) return;
       FirebaseAuth.instance.currentUser == null
           ? Navigator.pushReplacementNamed(context, LoginView.id)
