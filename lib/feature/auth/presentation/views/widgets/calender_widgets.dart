@@ -52,7 +52,7 @@ class _CalenderWidgetState extends State<CalenderWidget> {
         isTodayHighlighted: false,
         selectedDecoration: BoxDecoration(
           color: ColorManager.primaryColor,
-          shape: BoxShape.rectangle,
+          shape: BoxShape.circle,
         ),
         selectedTextStyle: TextStyle(
           color: ColorManager.witheColor,

@@ -57,6 +57,9 @@ class CustomTextFromFeild extends StatelessWidget {
           focusedBorder: buildOutlineInputBorder(
             color: ColorManager.borderColor,
           ),
+          focusedErrorBorder: buildOutlineInputBorder(
+            color: ColorManager.primaryColor,
+          ),
           errorBorder: buildOutlineInputBorder(
             color: ColorManager.primaryColor,
           ),

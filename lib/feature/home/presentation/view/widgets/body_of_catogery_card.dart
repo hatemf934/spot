@@ -40,9 +40,7 @@ class BodyOfCatogeryCard extends StatelessWidget {
               Text(TextManager.spotsCount, style: Styles.textStyle13),
               const Spacer(),
               GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, CardViewVertical.id);
-                },
+                onTap: () => Navigator.pushNamed(context, CardViewVertical.id),
                 child: Container(
                   width: WidthManager.w25,
                   height: HeightManager.h25,

@@ -14,7 +14,6 @@ class ButtonSelected extends StatelessWidget {
       padding: EdgeInsets.all(PaddingManager.p20),
       child: SizedBox(
         width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.05,
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(

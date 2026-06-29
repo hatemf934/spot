@@ -25,7 +25,6 @@ class AuthRepoImplement extends AuthRepo {
     try {
       final userCredential = await authFireBaseServices
           .signUpWithEmailAndPassword(email: email, password: password);
-      final user = userCredential;
       UserModel userModel = UserModel(
         fullName: fullName,
         userName: userName,
@@ -33,7 +32,7 @@ class AuthRepoImplement extends AuthRepo {
         email: email,
         dateOfBirth: dateOfBirth,
         gender: gender,
-        uId: user.uid,
+        uId: userCredential.uid,
         password: password,
       );
 

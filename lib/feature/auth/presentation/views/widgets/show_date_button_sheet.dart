@@ -25,7 +25,7 @@ Future<DateTime?> showDateButtonSheet(
       return StatefulBuilder(
         builder: (BuildContext context, StateSetter setModalState) {
           return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.58,
+            height: MediaQuery.of(context).size.height * 0.60,
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

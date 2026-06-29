@@ -23,21 +23,21 @@ Future<String?> showGenderButtonSheet(
       return StatefulBuilder(
         builder: (context, setState) {
           return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
+            height: MediaQuery.of(context).size.height * 0.35,
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
                 TitleShowModel(title: TextManager.gender),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                // SizedBox(height: HeightManager.h20),
                 GenderSelected(
                   selectedGender: initialGender,
                   onChanged: (value) => setState(() {
                     initialGender = value!;
                   }),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                // SizedBox(height: HeightManager.h12),
                 ButtonSelected(
                   onPressed: () => Navigator.pop(context, initialGender),
                 ),
