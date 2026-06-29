@@ -23,12 +23,6 @@ class _BodyOfRegesterState extends State<BodyOfRegester> {
   bool isSubmitted = false;
   final GlobalKey<FormState> formKey = GlobalKey();
   @override
-  void dispose() {
-    context.read<UserCubit>().clearSignUpFields();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
@@ -89,7 +83,10 @@ class _BodyOfRegesterState extends State<BodyOfRegester> {
                 text: TextManager.signUp,
               ),
               AnotherAuthSection(
-                onPressed: () => Navigator.pushNamed(context, LoginView.id),
+                onPressed: () {
+                  context.read<UserCubit>().clearSignUpFields();
+                  Navigator.pushNamed(context, LoginView.id);
+                },
                 textGoogle: TextManager.signUpWithGoogle,
                 textFacebook: TextManager.signUpWithFacebook,
                 haveAccount: TextManager.alreadyHaveAccount,

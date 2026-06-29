@@ -45,19 +45,23 @@ class UserCubit extends Cubit<UserState> {
       gender: signUpGender.text,
     );
 
-    result.fold(
-      (failure) => emit(SignupFailure(errmessage: failure.message)),
-      (user) => emit(SignupSucsses(user: user)),
-    );
+    result.fold((failure) => emit(SignupFailure(errmessage: failure.message)), (
+      user,
+    ) {
+      clearSignUpFields();
+      emit(SignupSucsses(user: user));
+    });
   }
 
   Future<void> signInWithGoogle() async {
     emit(SignInLoading());
     var result = await authRepo.signInWithGoogle();
-    result.fold(
-      (failure) => emit(SignInFailure(errmessage: failure.message)),
-      (user) => emit(SignInSucsses(user: user)),
-    );
+    result.fold((failure) => emit(SignInFailure(errmessage: failure.message)), (
+      user,
+    ) {
+      clearSignInFields();
+      emit(SignInSucsses(user: user));
+    });
   }
 
   void clearSignUpFields() {
