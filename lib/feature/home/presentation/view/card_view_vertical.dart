@@ -27,7 +27,7 @@ class CardViewVertical extends StatelessWidget {
           children: [
             CustomSearchField(),
             SizedBox(height: HeightManager.h20),
-            TotalNumbersText(),
+            TotalNumbersText(textNumber: "12 Restaurants"),
             SizedBox(height: HeightManager.h12),
             Expanded(
               child: ListviewCardItem(

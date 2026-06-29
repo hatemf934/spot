@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/core/utils/text_manager.dart';
+import 'package:spot/feature/events/presentation/views/event_view.dart';
 import 'package:spot/feature/home/presentation/view/home_view.dart';
 
 class MainScreen extends StatefulWidget {
@@ -14,7 +15,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Widget> pages = [HomeView()];
+  List<Widget> pages = [
+    HomeView(),
+    Container(),
+    Container(),
+    Container(),
+    EventView(),
+  ];
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {

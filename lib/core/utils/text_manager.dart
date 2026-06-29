@@ -55,4 +55,5 @@ class TextManager {
   static const String restaurants = "Restaurants";
   static const String spotsCount = "125 Spots";
   static const String searchText = "Search";
+  static const String eventsText = "Events";
 }
