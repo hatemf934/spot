@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
-import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/route_manager.dart';
-import 'package:spot/core/utils/width_manager.dart';
 import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
+import 'package:spot/feature/home/presentation/view/widgets/body_card_view_map.dart';
 import 'package:spot/feature/home/presentation/view/widgets/custom_app_bar_card_view.dart';
 import 'package:spot/feature/home/presentation/view/widgets/custom_search_feild.dart';
-import 'package:spot/feature/home/presentation/view/widgets/list_view_custom_card_item.dart';
 
 class CardViewHorzintal extends StatelessWidget {
   const CardViewHorzintal({super.key});
@@ -21,23 +19,14 @@ class CardViewHorzintal extends StatelessWidget {
             Navigator.pushReplacementNamed(context, CardViewVertical.id),
         iconData: Icons.format_list_bulleted,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(PaddingManager.p16),
-        child: Column(
-          children: [
-            CustomSearchField(),
-            Spacer(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.32,
-              child: ListviewCardItem(
-                scrollDirection: Axis.horizontal,
-                sizedBox: SizedBox(width: WidthManager.w22),
-                width: MediaQuery.of(context).size.width * 0.78,
-              ),
-            ),
-            SizedBox(height: HeightManager.h20),
-          ],
-        ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(PaddingManager.p16),
+            child: CustomSearchField(),
+          ),
+          Expanded(child: BodyCardViewMap()),
+        ],
       ),
     );
   }
