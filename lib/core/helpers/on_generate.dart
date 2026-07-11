@@ -7,6 +7,7 @@ import 'package:spot/feature/forgrtPassword/presentation/view/forget_password.da
 import 'package:spot/feature/forgrtPassword/presentation/view/otp_view.dart';
 import 'package:spot/feature/home/presentation/view/card_view_horzintal.dart';
 import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
+import 'package:spot/feature/home/presentation/view/change_map_location_view.dart';
 import 'package:spot/feature/splash/presentation/views/splash_view.dart';
 import 'package:spot/main_screen.dart';
 
@@ -30,6 +31,10 @@ Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(builder: (context) => const CardViewVertical());
     case RouteManager.cardvievHorzental:
       return MaterialPageRoute(builder: (context) => const CardViewHorzintal());
+    case RouteManager.changeMapLocationView:
+      return MaterialPageRoute(
+        builder: (context) => const ChangeMapLocationView(),
+      );
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

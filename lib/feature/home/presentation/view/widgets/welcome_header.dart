@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/font_manager.dart';
 import 'package:spot/core/utils/text_manager.dart';
+import 'package:spot/feature/home/presentation/view/change_map_location_view.dart';
 
 class WelcomeHeader extends StatelessWidget {
   const WelcomeHeader({super.key});
@@ -21,23 +22,29 @@ class WelcomeHeader extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              RichText(
-                text: TextSpan(
-                  style: TextStyle(
-                    fontSize: FontManager.f14,
-                    color: ColorManager.greyColor400,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    TextManager.yourLocation,
+                    style: TextStyle(
+                      fontSize: FontManager.f14,
+                      color: ColorManager.greyColor400,
+                    ),
                   ),
-                  children: [
-                    TextSpan(text: TextManager.yourLocation),
-                    TextSpan(
-                      text: TextManager.alexandria,
+                  GestureDetector(
+                    onTap: () =>
+                        Navigator.pushNamed(context, ChangeMapLocationView.id),
+                    child: Text(
+                      TextManager.alexandria,
                       style: TextStyle(
+                        fontSize: FontManager.f14,
                         color: ColorManager.orangeColor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),

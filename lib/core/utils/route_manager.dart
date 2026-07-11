@@ -9,4 +9,5 @@ class RouteManager {
   static const String screenview = "screenview";
   static const String cardviewVertical = "cardviewvertical";
   static const String cardvievHorzental = "cardviewhorzental";
+  static const String changeMapLocationView = "changeMaplocationview";
 }
