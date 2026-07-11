@@ -1,0 +1,33 @@
+import 'package:dio/dio.dart';
+import 'package:spot/core/api/dio_class.dart';
+import 'package:spot/core/api/end_points_class.dart';
+import 'package:spot/core/model/places_city_model/places_city_model.dart';
+
+class GoogleMapsPlacesService {
+  GoogleMapsPlacesService({required this.dioClass});
+  final DioClass dioClass;
+
+  Future<List<PlacesCityModel>> getPredictions({required String input}) async {
+    try {
+      final response = await dioClass.post(
+        EndPointClass.placeBaseUrl,
+        data: {
+          "input": input,
+          "includedPrimaryTypes": ["locality"],
+        },
+      );
+
+      final List<dynamic> suggestions = response['suggestions'] ?? [];
+
+      return suggestions
+          .map(
+            (item) => PlacesCityModel.fromJson(
+              item['placePrediction'] as Map<String, dynamic>,
+            ),
+          )
+          .toList();
+    } on DioException catch (e) {
+      throw Exception('Failed to fetch predictions: ${e.message}');
+    }
+  }
+}
