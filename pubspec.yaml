@@ -49,6 +49,7 @@ dependencies:
   modal_progress_hud_nsn: ^0.5.0
   convex_bottom_bar: ^3.2.0
   font_awesome_flutter: ^11.0.0
+  google_maps_flutter: ^2.17.1
 
 dev_dependencies:
   flutter_test:
