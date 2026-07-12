@@ -43,18 +43,4 @@ class PlacesCityModel {
       'types': types,
     };
   }
-
-  // static List<PlacesCityModel> fromSuggestionsResponse(
-  //   Map<String, dynamic> json,
-  // ) {
-  //   final List<dynamic> suggestions = json['suggestions'] ?? [];
-
-  //   return suggestions
-  //       .map(
-  //         (item) => PlacesCityModel.fromJson(
-  //           item['placePrediction'] as Map<String, dynamic>,
-  //         ),
-  //       )
-  //       .toList();
-  // }
 }

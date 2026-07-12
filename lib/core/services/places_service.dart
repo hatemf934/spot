@@ -17,15 +17,15 @@ class GoogleMapsPlacesService {
         },
       );
 
-      final List<dynamic> suggestions = response['suggestions'] ?? [];
-
-      return suggestions
+      List<dynamic> suggestions = response['suggestions'];
+      List<PlacesCityModel> predictions = suggestions
           .map(
             (item) => PlacesCityModel.fromJson(
               item['placePrediction'] as Map<String, dynamic>,
             ),
           )
           .toList();
+      return predictions;
     } on DioException catch (e) {
       throw Exception('Failed to fetch predictions: ${e.message}');
     }

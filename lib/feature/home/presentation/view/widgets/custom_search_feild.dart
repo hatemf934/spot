@@ -7,8 +7,8 @@ import 'package:spot/core/utils/raduis_manager.dart';
 import 'package:spot/core/utils/text_manager.dart';
 
 class CustomSearchField extends StatelessWidget {
-  const CustomSearchField({super.key});
-
+  const CustomSearchField({super.key, this.textEditingController});
+  final TextEditingController? textEditingController;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,6 +26,7 @@ class CustomSearchField extends StatelessWidget {
           ),
         ),
         child: TextFormField(
+          controller: textEditingController,
           cursorColor: ColorManager.primaryColor,
           decoration: InputDecoration(
             hint: Padding(
