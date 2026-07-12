@@ -56,7 +56,15 @@ class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
                     textEditingController: textEditingController,
                   ),
                   const SizedBox(height: HeightManager.h12),
-                  CustomListViewPredictions(places: places),
+                  CustomListViewPredictions(
+                    places: places,
+                    googleMapsPlacesService: googleMapsPlacesService,
+                    onPlaceSelect: (placeDetailsModel) {
+                      textEditingController.clear();
+                      places.clear();
+                      setState(() {});
+                    },
+                  ),
                 ],
               ),
             ),
@@ -77,6 +85,7 @@ class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
         setState(() {});
       } else {
         places.clear();
+        setState(() {});
       }
     });
   }

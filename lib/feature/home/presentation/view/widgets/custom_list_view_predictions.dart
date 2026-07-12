@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:spot/core/model/places_city_model/places_city_model.dart';
+import 'package:spot/core/model/places_details_model/places_details_model.dart';
+import 'package:spot/core/services/places_service.dart';
 import 'package:spot/core/utils/color_manager.dart';
 
 class CustomListViewPredictions extends StatelessWidget {
-  const CustomListViewPredictions({super.key, required this.places});
+  const CustomListViewPredictions({
+    super.key,
+    required this.places,
+    required this.googleMapsPlacesService,
+    required this.onPlaceSelect,
+  });
 
   final List<PlacesCityModel> places;
+  final GoogleMapsPlacesService googleMapsPlacesService;
+  final void Function(PlacesDetailsModel) onPlaceSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +32,11 @@ class CustomListViewPredictions extends StatelessWidget {
               color: ColorManager.primaryColor,
             ),
             trailing: IconButton(
-              onPressed: () {},
+              onPressed: () async {
+                var placeDetails = await googleMapsPlacesService
+                    .getPlaceDetails(placeId: places[index].placeId.toString());
+                onPlaceSelect(placeDetails);
+              },
               icon: const Icon(
                 Icons.arrow_circle_right_outlined,
                 color: ColorManager.primaryColor,

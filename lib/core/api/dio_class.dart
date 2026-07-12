@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:spot/core/api/api_Interceptors.dart';
 import 'package:spot/core/api/api_class.dart';
+import 'package:spot/core/api/end_points_class.dart';
 
 class DioClass extends ApiClass {
   final Dio dio;
 
   DioClass({required this.dio}) {
+    dio.options.baseUrl = EndPointClass.placeBaseUrl;
     dio.interceptors.add(ApiInterceptors());
     dio.interceptors.add(
       LogInterceptor(
