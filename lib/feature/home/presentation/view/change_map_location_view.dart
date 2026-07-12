@@ -9,6 +9,7 @@ import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/feature/home/presentation/view/widgets/custom_google_map.dart';
 import 'package:spot/feature/home/presentation/view/widgets/custom_list_view_predictions.dart';
 import 'package:spot/feature/home/presentation/view/widgets/custom_search_feild.dart';
+import 'package:uuid/uuid.dart';
 
 class ChangeMapLocationView extends StatefulWidget {
   const ChangeMapLocationView({super.key});
@@ -21,9 +22,12 @@ class ChangeMapLocationView extends StatefulWidget {
 class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
   late TextEditingController textEditingController;
   late GoogleMapsPlacesService googleMapsPlacesService;
+  late Uuid uuid;
   List<PlacesCityModel> places = [];
+  String? sesstionToken;
   @override
   void initState() {
+    uuid = const Uuid();
     textEditingController = TextEditingController();
     googleMapsPlacesService = GoogleMapsPlacesService(
       dioClass: DioClass(dio: Dio()),
@@ -62,6 +66,7 @@ class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
                     onPlaceSelect: (placeDetailsModel) {
                       textEditingController.clear();
                       places.clear();
+                      sesstionToken = null;
                       setState(() {});
                     },
                   ),
@@ -76,9 +81,11 @@ class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
 
   void fetchPredictions() {
     textEditingController.addListener(() async {
+      sesstionToken ??= uuid.v4();
       if (textEditingController.text.isNotEmpty) {
         var result = await googleMapsPlacesService.getPredictions(
           input: textEditingController.text,
+          sesstionToken: sesstionToken!,
         );
         places.clear();
         places.addAll(result);

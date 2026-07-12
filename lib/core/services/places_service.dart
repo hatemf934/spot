@@ -8,13 +8,17 @@ class GoogleMapsPlacesService {
   GoogleMapsPlacesService({required this.dioClass});
   final DioClass dioClass;
 
-  Future<List<PlacesCityModel>> getPredictions({required String input}) async {
+  Future<List<PlacesCityModel>> getPredictions({
+    required String input,
+    required String sesstionToken,
+  }) async {
     try {
       final response = await dioClass.post(
         EndPointClass.autocomplete,
         data: {
           "input": input,
           "includedPrimaryTypes": ["locality"],
+          "sessionToken": sesstionToken,
         },
       );
 
