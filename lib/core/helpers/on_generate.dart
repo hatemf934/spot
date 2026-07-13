@@ -32,8 +32,11 @@ Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     case RouteManager.cardvievHorzental:
       return MaterialPageRoute(builder: (context) => const CardViewHorzintal());
     case RouteManager.changeMapLocationView:
+      final onLocationSelected =
+          routeSettings.arguments as void Function(String);
       return MaterialPageRoute(
-        builder: (context) => const ChangeMapLocationView(),
+        builder: (context) =>
+            ChangeMapLocationView(onLocationSelected: onLocationSelected),
       );
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());

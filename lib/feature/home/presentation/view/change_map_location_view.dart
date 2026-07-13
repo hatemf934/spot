@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:spot/core/api/dio_class.dart';
 import 'package:spot/core/model/places_city_model/places_city_model.dart';
+import 'package:spot/core/model/places_details_model/places_details_model.dart';
 import 'package:spot/core/services/places_service.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
@@ -12,9 +14,9 @@ import 'package:spot/feature/home/presentation/view/widgets/custom_search_feild.
 import 'package:uuid/uuid.dart';
 
 class ChangeMapLocationView extends StatefulWidget {
-  const ChangeMapLocationView({super.key});
+  const ChangeMapLocationView({super.key, required this.onLocationSelected});
   static const String id = RouteManager.changeMapLocationView;
-
+  final void Function(String locationName) onLocationSelected;
   @override
   State<ChangeMapLocationView> createState() => _ChangeMapLocationViewState();
 }
@@ -22,9 +24,11 @@ class ChangeMapLocationView extends StatefulWidget {
 class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
   late TextEditingController textEditingController;
   late GoogleMapsPlacesService googleMapsPlacesService;
+  late GoogleMapController googleMapController;
   late Uuid uuid;
   List<PlacesCityModel> places = [];
   String? sesstionToken;
+  PlacesDetailsModel? selectedPlace;
   @override
   void initState() {
     uuid = const Uuid();
@@ -38,16 +42,23 @@ class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
 
   @override
   void dispose() {
-    super.dispose();
     textEditingController.dispose();
+    googleMapController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          CustomGoogleMap(),
+          CustomGoogleMap(
+            placesDetailsModel: selectedPlace,
+            onMapCreated: (controller) {
+              googleMapController = controller;
+            },
+          ),
           Positioned(
             top: 40,
             left: 0,
@@ -67,7 +78,13 @@ class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
                       textEditingController.clear();
                       places.clear();
                       sesstionToken = null;
-                      setState(() {});
+                      setState(() {
+                        selectedPlace = placeDetailsModel;
+                      });
+                      animateToPlace(placeDetailsModel);
+                      final selectedName =
+                          placeDetailsModel.displayName?.text ?? '';
+                      widget.onLocationSelected(selectedName);
                     },
                   ),
                 ],
@@ -76,6 +93,16 @@ class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
           ),
         ],
       ),
+    );
+  }
+
+  void animateToPlace(PlacesDetailsModel placeDetailsModel) {
+    final location = placeDetailsModel.location;
+
+    if (location?.latitude == null || location?.longitude == null) return;
+
+    googleMapController.animateCamera(
+      CameraUpdate.newLatLng(LatLng(location!.latitude!, location.longitude!)),
     );
   }
 

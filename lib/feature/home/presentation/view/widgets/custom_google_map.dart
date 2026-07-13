@@ -1,30 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:spot/core/model/places_details_model/places_details_model.dart';
 
 class CustomGoogleMap extends StatefulWidget {
-  const CustomGoogleMap({super.key});
-
+  const CustomGoogleMap({
+    super.key,
+    this.placesDetailsModel,
+    this.onMapCreated,
+  });
+  final PlacesDetailsModel? placesDetailsModel;
+  final void Function(GoogleMapController controller)? onMapCreated;
   @override
   State<CustomGoogleMap> createState() => _CustomGoogleMapState();
 }
 
 class _CustomGoogleMapState extends State<CustomGoogleMap> {
-  static const CameraPosition initialCameraPosition = CameraPosition(
-    target: LatLng(31.2001, 29.9187),
-    zoom: 15,
-  );
+  late CameraPosition initialCameraPosition;
 
-  static final LatLngBounds alexandriaBounds = LatLngBounds(
-    southwest: const LatLng(31.10, 29.75),
-    northeast: const LatLng(31.35, 30.10),
-  );
   String? mapStyle;
   Set<Marker> myMarker = {};
+  BitmapDescriptor? customIconMarker;
+
   @override
-  initState() {
+  void initState() {
     super.initState();
     initStyleMap();
-    intiMarker();
+    initialCameraPosition = const CameraPosition(
+      target: LatLng(31.2001, 29.9187),
+      zoom: 15,
+    );
+    initMarkerIcon();
+  }
+
+  @override
+  void didUpdateWidget(covariant CustomGoogleMap oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    final newPlace = widget.placesDetailsModel;
+    final oldPlace = oldWidget.placesDetailsModel;
+
+    if (newPlace != null &&
+        newPlace.location?.latitude != null &&
+        newPlace.location?.longitude != null &&
+        (oldPlace?.location?.latitude != newPlace.location?.latitude ||
+            oldPlace?.location?.longitude != newPlace.location?.longitude)) {
+      updateMarker(
+        LatLng(newPlace.location!.latitude!, newPlace.location!.longitude!),
+      );
+    }
   }
 
   @override
@@ -33,9 +56,11 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       style: mapStyle,
       markers: myMarker,
       zoomControlsEnabled: false,
-      cameraTargetBounds: CameraTargetBounds(alexandriaBounds),
       initialCameraPosition: initialCameraPosition,
       minMaxZoomPreference: const MinMaxZoomPreference(12, 18),
+      onMapCreated: (controller) {
+        widget.onMapCreated?.call(controller);
+      },
     );
   }
 
@@ -48,18 +73,25 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     });
   }
 
-  void intiMarker() async {
-    var customIconMarker = await BitmapDescriptor.asset(
-      ImageConfiguration(),
+  void initMarkerIcon() async {
+    customIconMarker = await BitmapDescriptor.asset(
+      const ImageConfiguration(),
       "assets/markerIcon/marker_app.png",
     );
-    var marker = Marker(
-      icon: customIconMarker,
-      position: LatLng(31.2001, 29.9187),
-      markerId: MarkerId("my marker"),
+    updateMarker(const LatLng(31.2001, 29.9187));
+  }
+
+  void updateMarker(LatLng position) {
+    if (customIconMarker == null) return;
+    final marker = Marker(
+      icon: customIconMarker!,
+      position: position,
+      markerId: const MarkerId("selected_place_marker"),
     );
     setState(() {
-      myMarker.add(marker);
+      myMarker
+        ..clear()
+        ..add(marker);
     });
   }
 }
