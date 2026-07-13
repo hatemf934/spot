@@ -6,7 +6,7 @@ import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/styles.dart';
 import 'package:spot/core/utils/text_manager.dart';
 import 'package:spot/feature/home/presentation/view/widgets/custom_search_feild.dart';
-import 'package:spot/feature/home/presentation/view/widgets/total_number_text.dart';
+import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/total_number_text.dart';
 
 class EventView extends StatelessWidget {
   const EventView({super.key});

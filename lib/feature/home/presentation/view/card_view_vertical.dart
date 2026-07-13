@@ -4,10 +4,10 @@ import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/feature/home/presentation/view/card_view_horzintal.dart';
-import 'package:spot/feature/home/presentation/view/widgets/custom_app_bar_card_view.dart';
+import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/custom_app_bar_card_view.dart';
 import 'package:spot/feature/home/presentation/view/widgets/custom_search_feild.dart';
-import 'package:spot/feature/home/presentation/view/widgets/list_view_custom_card_item.dart';
-import 'package:spot/feature/home/presentation/view/widgets/total_number_text.dart';
+import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/list_view_custom_card_item.dart';
+import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/total_number_text.dart';
 
 class CardViewVertical extends StatelessWidget {
   const CardViewVertical({super.key});
@@ -24,7 +24,7 @@ class CardViewVertical extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(PaddingManager.p16),
         child: Column(
-          children: [
+          children: const [
             CustomSearchField(),
             SizedBox(height: HeightManager.h20),
             TotalNumbersText(textNumber: "12 Restaurants"),

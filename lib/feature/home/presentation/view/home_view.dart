@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spot/feature/auth/presentation/bloc/login/user_cubit.dart';
-import 'package:spot/feature/home/presentation/view/widgets/spot_screen.dart';
+import 'package:spot/feature/home/presentation/view/widgets/homewidgets/spot_screen.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

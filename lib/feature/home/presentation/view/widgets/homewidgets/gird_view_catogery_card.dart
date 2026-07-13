@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spot/feature/home/presentation/view/widgets/catogery_card.dart';
+import 'package:spot/feature/home/presentation/view/widgets/homewidgets/catogery_card.dart';
 
 class GridViewCatogeryCard extends StatelessWidget {
   const GridViewCatogeryCard({

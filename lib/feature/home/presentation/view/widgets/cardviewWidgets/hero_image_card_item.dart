@@ -26,7 +26,7 @@ class HeroImageCardItem extends StatelessWidget {
             width: WidthManager.w32,
             height: HeightManager.h32,
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.55),
+              color: ColorManager.blackColor.withAlpha(140),
               shape: BoxShape.circle,
             ),
             child: const Icon(

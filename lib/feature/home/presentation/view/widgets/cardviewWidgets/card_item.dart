@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/raduis_manager.dart';
-import 'package:spot/feature/home/presentation/view/widgets/hero_image_card_item.dart';
-import 'package:spot/feature/home/presentation/view/widgets/info_card_item.dart';
+import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/hero_image_card_item.dart';
+import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/info_card_item.dart';
 
 class CustomCardItem extends StatelessWidget {
   const CustomCardItem({super.key});
@@ -16,7 +16,7 @@ class CustomCardItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(RaduisManager.r14),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.07),
+            color: ColorManager.blackColor.withAlpha(18),
             blurRadius: RaduisManager.r14,
             offset: const Offset(0, 4),
           ),
@@ -25,7 +25,7 @@ class CustomCardItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [HeroImageCardItem(), InfoCardItem()],
+        children: const [HeroImageCardItem(), InfoCardItem()],
       ),
     );
   }

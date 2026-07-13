@@ -18,7 +18,7 @@ class SpotsTitleRow extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {},
-          child: Text(
+          child: const Text(
             TextManager.seeAll,
             style: TextStyle(color: ColorManager.orangeColor),
           ),

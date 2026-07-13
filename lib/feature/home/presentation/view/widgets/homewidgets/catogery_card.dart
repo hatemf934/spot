@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/raduis_manager.dart';
 import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
-import 'package:spot/feature/home/presentation/view/widgets/body_of_catogery_card.dart';
+import 'package:spot/feature/home/presentation/view/widgets/homewidgets/body_of_catogery_card.dart';
 
 class CatogeryCard extends StatelessWidget {
   const CatogeryCard({super.key, required this.color, required this.image});

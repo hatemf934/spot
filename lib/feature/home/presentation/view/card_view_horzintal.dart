@@ -3,8 +3,8 @@ import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
-import 'package:spot/feature/home/presentation/view/widgets/body_card_view_map.dart';
-import 'package:spot/feature/home/presentation/view/widgets/custom_app_bar_card_view.dart';
+import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/body_card_view_map.dart';
+import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/custom_app_bar_card_view.dart';
 import 'package:spot/feature/home/presentation/view/widgets/custom_search_feild.dart';
 
 class CardViewHorzintal extends StatelessWidget {
