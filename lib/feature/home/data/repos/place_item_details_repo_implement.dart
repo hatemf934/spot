@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:spot/core/api/dio_class.dart';
 import 'package:spot/core/api/end_points_class.dart';
-import 'package:spot/core/model/places_details_model/places_details_model.dart';
+import 'package:spot/core/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/feature/home/data/repos/place_item_details_repo.dart';
 
 class PlaceItemDetailsRepoImplement extends PlaceItemDetailsRepo {
@@ -9,7 +9,7 @@ class PlaceItemDetailsRepoImplement extends PlaceItemDetailsRepo {
 
   PlaceItemDetailsRepoImplement({required this.dioClass});
   @override
-  Future<List<PlacesDetailsModel>> getPlaces({
+  Future<List<PlaceItemDetailsModel>> getPlaces({
     required String textQuery,
   }) async {
     try {
@@ -28,9 +28,10 @@ class PlaceItemDetailsRepoImplement extends PlaceItemDetailsRepo {
         },
       );
       List<dynamic> data = response['places'];
-      List<PlacesDetailsModel> places = data
+      List<PlaceItemDetailsModel> places = data
           .map(
-            (item) => PlacesDetailsModel.fromJson(item as Map<String, dynamic>),
+            (item) =>
+                PlaceItemDetailsModel.fromJson(item as Map<String, dynamic>),
           )
           .toList();
       return places;

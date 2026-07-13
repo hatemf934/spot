@@ -1,5 +1,5 @@
-import 'package:spot/core/model/places_details_model/places_details_model.dart';
+import 'package:spot/core/model/place_item_details_model/place_item_details_model.dart';
 
 abstract class PlaceItemDetailsRepo {
-  Future<List<PlacesDetailsModel>> getPlaces({required String textQuery});
+  Future<List<PlaceItemDetailsModel>> getPlaces({required String textQuery});
 }
