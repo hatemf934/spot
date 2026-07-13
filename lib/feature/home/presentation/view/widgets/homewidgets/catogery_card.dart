@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/raduis_manager.dart';
+import 'package:spot/feature/home/data/model/catogery_model.dart';
 import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
 import 'package:spot/feature/home/presentation/view/widgets/homewidgets/body_of_catogery_card.dart';
 
 class CatogeryCard extends StatelessWidget {
-  const CatogeryCard({super.key, required this.color, required this.image});
-  final Color color;
-  final String image;
+  const CatogeryCard({super.key, required this.categoryModel});
+  final CategoryModel categoryModel;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,9 @@ class CatogeryCard extends StatelessWidget {
         width: screenWidth * 0.45,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(RaduisManager.r18),
-          color: color,
+          color: categoryModel.color,
         ),
-        child: BodyOfCatogeryCard(image: image),
+        child: BodyOfCatogeryCard(categoryModel: categoryModel),
       ),
     );
   }

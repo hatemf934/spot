@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spot/constants.dart';
 import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
@@ -23,12 +22,7 @@ class SpotsScreen extends StatelessWidget {
               SizedBox(height: HeightManager.h8),
               SpotsTitleRow(),
               SizedBox(height: HeightManager.h8),
-              Expanded(
-                child: GridViewCatogeryCard(
-                  colors: colorCaogety,
-                  images: imageCatogery,
-                ),
-              ),
+              Expanded(child: GridViewCatogeryCard()),
             ],
           ),
         ),

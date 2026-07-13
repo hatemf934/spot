@@ -6,11 +6,12 @@ import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/styles.dart';
 import 'package:spot/core/utils/text_manager.dart';
 import 'package:spot/core/utils/width_manager.dart';
+import 'package:spot/feature/home/data/model/catogery_model.dart';
 import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
 
 class BodyOfCatogeryCard extends StatelessWidget {
-  const BodyOfCatogeryCard({super.key, required this.image});
-  final String image;
+  const BodyOfCatogeryCard({super.key, required this.categoryModel});
+  final CategoryModel categoryModel;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class BodyOfCatogeryCard extends StatelessWidget {
           bottom: 2,
           right: 6,
           child: Image.asset(
-            image,
+            categoryModel.image,
             width: WidthManager.w70,
             height: HeightManager.h70,
           ),
@@ -31,7 +32,7 @@ class BodyOfCatogeryCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                TextManager.restaurants,
+                categoryModel.name,
                 style: Styles.textStyle16.copyWith(
                   color: ColorManager.witheColor,
                   fontWeight: FontWeight.bold,

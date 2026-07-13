@@ -52,8 +52,14 @@ class TextManager {
   static const String alexandria = "Alexandria";
   static const String spots = "Spots";
   static const String seeAll = "See All";
-  static const String restaurants = "Restaurants";
   static const String spotsCount = "125 Spots";
   static const String searchText = "Search";
   static const String eventsText = "Events";
+  static const String restaurants = "Restaurants";
+  static const String coffeeShops = "Coffee Shops";
+  static const String entertainment = "Entertainment";
+  static const String parksNature = "Parks & Nature";
+  static const String culture = "Culture";
+  static const String shoppingRetail = "Shopping & Retail";
+  static const String fitnessWellness = "Fitness & Wellness";
 }
