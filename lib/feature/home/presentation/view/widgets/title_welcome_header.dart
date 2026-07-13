@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/font_manager.dart';
+import 'package:spot/core/utils/styles.dart';
 import 'package:spot/core/utils/text_manager.dart';
 import 'package:spot/feature/home/presentation/view/change_map_location_view.dart';
 
@@ -22,18 +23,14 @@ class _TitleWelcomeHeaderState extends State<TitleWelcomeHeader> {
         children: [
           Text(
             TextManager.welcomeBack,
-            style: TextStyle(
-              fontSize: FontManager.f24,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Styles.textStyleBlack.copyWith(fontSize: FontManager.f24),
           ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 TextManager.yourLocation,
-                style: TextStyle(
-                  fontSize: FontManager.f14,
+                style: Styles.textStyle14.copyWith(
                   color: ColorManager.greyColor400,
                 ),
               ),
@@ -51,10 +48,8 @@ class _TitleWelcomeHeaderState extends State<TitleWelcomeHeader> {
                 },
                 child: Text(
                   currentLocation,
-                  style: TextStyle(
-                    fontSize: FontManager.f14,
+                  style: Styles.textStyle14.copyWith(
                     color: ColorManager.orangeColor,
-                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),

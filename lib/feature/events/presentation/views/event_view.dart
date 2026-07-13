@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/font_manager.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/styles.dart';
@@ -15,7 +16,10 @@ class EventView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(TextManager.eventsText, style: Styles.textStyleBlack24),
+        title: Text(
+          TextManager.eventsText,
+          style: Styles.textStyleBlack.copyWith(fontSize: FontManager.f24),
+        ),
       ),
       backgroundColor: ColorManager.scaffoldColor,
       body: Padding(

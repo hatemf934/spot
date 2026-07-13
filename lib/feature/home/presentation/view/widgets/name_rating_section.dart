@@ -39,9 +39,7 @@ class NameAndRatingSection extends StatelessWidget {
               SizedBox(width: WidthManager.w3),
               Text(
                 rating.toStringAsFixed(1),
-                style: const TextStyle(
-                  fontSize: FontManager.f12,
-                  fontWeight: FontWeight.w700,
+                style: Styles.textStyle12.copyWith(
                   color: ColorManager.primaryColor,
                 ),
               ),

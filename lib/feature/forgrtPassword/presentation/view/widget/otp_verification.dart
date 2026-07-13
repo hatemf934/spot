@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/font_manager.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/raduis_manager.dart';
@@ -19,7 +20,7 @@ class OTPverification extends StatelessWidget {
     final defaultPinTheme = PinTheme(
       width: WidthManager.w65,
       height: HeightManager.h65,
-      textStyle: Styles.textStyle22.copyWith(color: ColorManager.blackColor),
+      textStyle: Styles.textStyleBlack.copyWith(fontSize: FontManager.f22),
       decoration: BoxDecoration(
         color: ColorManager.witheColor,
         border: Border.all(color: ColorManager.borderColor),

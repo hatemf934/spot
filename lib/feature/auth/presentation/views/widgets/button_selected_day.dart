@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/font_manager.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/raduis_manager.dart';
 import 'package:spot/core/utils/styles.dart';
@@ -25,7 +26,10 @@ class ButtonSelected extends StatelessWidget {
           ),
           child: Text(
             TextManager.choose,
-            style: Styles.textStyle20.copyWith(color: ColorManager.witheColor),
+            style: Styles.textStyleBlack.copyWith(
+              color: ColorManager.witheColor,
+              fontSize: FontManager.f20,
+            ),
           ),
         ),
       ),

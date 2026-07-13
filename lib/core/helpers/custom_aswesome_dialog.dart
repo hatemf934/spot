@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/font_manager.dart';
+import 'package:spot/core/utils/styles.dart';
 import 'package:spot/core/utils/text_fireauth_manager.dart';
 
 class CustomAswesomeDialog {
@@ -27,10 +28,7 @@ class CustomAswesomeDialog {
       desc: description,
       btnOkOnPress: () {},
       dialogBackgroundColor: ColorManager.primaryColor,
-      titleTextStyle: TextStyle(
-        fontSize: FontManager.f20,
-        fontWeight: FontWeight.bold,
-      ),
+      titleTextStyle: Styles.textStyleBlack.copyWith(fontSize: FontManager.f20),
       descTextStyle: TextStyle(fontSize: FontManager.f15),
       btnOkColor: ColorManager.witheColor,
       buttonsTextStyle: TextStyle(color: ColorManager.blackColor),

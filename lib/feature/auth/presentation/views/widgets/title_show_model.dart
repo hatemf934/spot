@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/font_manager.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/raduis_manager.dart';
@@ -23,7 +24,10 @@ class TitleShowModel extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.symmetric(vertical: PaddingManager.p16),
-          child: Text(title, style: Styles.textStyle22),
+          child: Text(
+            title,
+            style: Styles.textStyleBlack.copyWith(fontSize: FontManager.f22),
+          ),
         ),
       ],
     );

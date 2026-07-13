@@ -11,7 +11,10 @@ class IsOpenCardItemSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('Open', style: Styles.isOpenText12),
+        Text(
+          'Open',
+          style: Styles.textStyle12.copyWith(color: ColorManager.colorSuccess),
+        ),
         SizedBox(width: WidthManager.w12),
         Text(
           'Closes 12 PM',

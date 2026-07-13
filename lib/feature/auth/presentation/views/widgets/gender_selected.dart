@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/font_manager.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/styles.dart';
@@ -20,7 +21,8 @@ class GenderSelected extends StatelessWidget {
         RadioListTile(
           title: Text(
             TextManager.maleText,
-            style: Styles.textStyle20.copyWith(
+            style: Styles.textStyleBlack.copyWith(
+              fontSize: FontManager.f20,
               color: selectedGender == TextManager.maleText
                   ? ColorManager.primaryColor
                   : ColorManager.blackColor,
@@ -46,7 +48,8 @@ class GenderSelected extends StatelessWidget {
         RadioListTile(
           title: Text(
             TextManager.femaleText,
-            style: Styles.textStyle20.copyWith(
+            style: Styles.textStyleBlack.copyWith(
+              fontSize: FontManager.f20,
               color: selectedGender == TextManager.femaleText
                   ? ColorManager.primaryColor
                   : ColorManager.blackColor,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/font_manager.dart';
 import 'package:spot/core/utils/styles.dart';
 
 class TitleAuth extends StatelessWidget {
@@ -13,7 +14,10 @@ class TitleAuth extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Styles.textStyle26.copyWith(color: ColorManager.blackColor),
+          style: Styles.textStyleBlack.copyWith(
+            color: ColorManager.blackColor,
+            fontSize: FontManager.f26,
+          ),
         ),
         Text(
           subTitle,

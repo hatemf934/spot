@@ -16,7 +16,10 @@ class CustomAppBarCardView extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: ColorManager.scaffoldColor,
-      title: const Text('Restaurants', style: Styles.textStyleBlack24),
+      title: Text(
+        'Restaurants',
+        style: Styles.textStyleBlack.copyWith(fontSize: FontManager.f24),
+      ),
       actions: [
         IconButton(
           onPressed: onPressed,

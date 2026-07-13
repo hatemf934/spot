@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
-import 'package:spot/core/utils/font_manager.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/raduis_manager.dart';
+import 'package:spot/core/utils/styles.dart';
 import 'package:spot/core/utils/text_manager.dart';
 
 class CustomSearchField extends StatelessWidget {
@@ -33,9 +33,8 @@ class CustomSearchField extends StatelessWidget {
               padding: EdgeInsets.only(top: PaddingManager.p5),
               child: Text(
                 TextManager.searchText,
-                style: TextStyle(
+                style: Styles.textStyle16.copyWith(
                   color: ColorManager.greyColor400,
-                  fontSize: FontManager.f16,
                 ),
               ),
             ),

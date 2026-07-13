@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/font_manager.dart';
 import 'package:spot/core/utils/styles.dart';
 import 'package:spot/core/utils/text_manager.dart';
 
@@ -13,7 +14,7 @@ class SpotsTitleRow extends StatelessWidget {
       children: [
         Text(
           TextManager.spots,
-          style: Styles.textStyle22.copyWith(color: ColorManager.blackColor),
+          style: Styles.textStyleBlack.copyWith(fontSize: FontManager.f22),
         ),
         TextButton(
           onPressed: () {},

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/font_manager.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/core/utils/styles.dart';
@@ -15,7 +16,10 @@ class OtpView extends StatelessWidget {
       backgroundColor: ColorManager.scaffoldColor,
       appBar: AppBar(
         backgroundColor: ColorManager.scaffoldColor,
-        title: Text(TextManager.otp, style: Styles.textStyle22),
+        title: Text(
+          TextManager.otp,
+          style: Styles.textStyleBlack.copyWith(fontSize: FontManager.f22),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: PaddingManager.p20),

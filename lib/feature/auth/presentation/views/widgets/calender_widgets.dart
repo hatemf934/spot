@@ -32,7 +32,9 @@ class _CalenderWidgetState extends State<CalenderWidget> {
       headerStyle: HeaderStyle(
         formatButtonVisible: false,
         titleCentered: true,
-        titleTextStyle: Styles.textStyle20,
+        titleTextStyle: Styles.textStyleBlack.copyWith(
+          fontSize: FontManager.f20,
+        ),
         leftChevronIcon: Icon(
           Icons.chevron_left,
           color: ColorManager.blackColor,
@@ -45,8 +47,12 @@ class _CalenderWidgetState extends State<CalenderWidget> {
         ),
       ),
       daysOfWeekStyle: DaysOfWeekStyle(
-        weekdayStyle: Styles.textStyle12,
-        weekendStyle: Styles.textStyle12,
+        weekdayStyle: Styles.textStyle12.copyWith(
+          color: ColorManager.colorCoolGray,
+        ),
+        weekendStyle: Styles.textStyle12.copyWith(
+          color: ColorManager.colorCoolGray,
+        ),
       ),
       calendarStyle: CalendarStyle(
         isTodayHighlighted: false,
