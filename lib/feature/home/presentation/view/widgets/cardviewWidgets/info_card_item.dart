@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spot/core/model/place_item_details_model/place_item_details_model.dart';
+import 'package:spot/feature/home/data/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/width_manager.dart';
 import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/is_open_card_item_section.dart';

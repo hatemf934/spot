@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spot/core/model/place_item_details_model/place_item_details_model.dart';
+import 'package:spot/feature/home/data/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/card_item.dart';
 
 class ListviewCardItem extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:spot/core/api/dio_class.dart';
 import 'package:spot/core/api/end_points_class.dart';
-import 'package:spot/core/model/place_item_details_model/place_item_details_model.dart';
+import 'package:spot/feature/home/data/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/feature/home/data/repos/place_item_details_repo.dart';
 
 class PlaceItemDetailsRepoImplement extends PlaceItemDetailsRepo {
