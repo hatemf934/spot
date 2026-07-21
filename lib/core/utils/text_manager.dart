@@ -52,7 +52,7 @@ class TextManager {
   static const String alexandria = "Alexandria";
   static const String spots = "Spots";
   static const String seeAll = "See All";
-  static const String spotsCount = "125 Spots";
+  static const String spotsCount = "Spots";
   static const String searchText = "Search";
   static const String eventsText = "Events";
   static const String restaurants = "Restaurants";

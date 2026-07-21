@@ -9,21 +9,19 @@ import 'package:spot/feature/forgrtPassword/presentation/view/otp_view.dart';
 import 'package:spot/feature/home/presentation/view/card_view_horzintal.dart';
 import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
 import 'package:spot/feature/home/presentation/view/change_map_location_view.dart';
+import 'package:spot/feature/home/presentation/view/home_view.dart';
 import 'package:spot/feature/splash/presentation/views/splash_view.dart';
-import 'package:spot/main_screen.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
-  debugPrint("Route => ${routeSettings.name}");
-  debugPrint("Arguments => ${routeSettings.arguments}");
   switch (routeSettings.name) {
     case RouteManager.splashRoute:
       return MaterialPageRoute(builder: (context) => const SplashView());
     case RouteManager.loginRoute:
       return MaterialPageRoute(builder: (context) => const LoginView());
-    case RouteManager.screenview:
-      return MaterialPageRoute(builder: (context) => const MainScreen());
     case RouteManager.regesterRoute:
       return MaterialPageRoute(builder: (context) => const RegesterView());
+    case RouteManager.spotsView:
+      return MaterialPageRoute(builder: (context) => const SpotsScreen());
     case RouteManager.changePasswordRoute:
       return MaterialPageRoute(builder: (context) => const ChangePassword());
     case RouteManager.otpRoute:

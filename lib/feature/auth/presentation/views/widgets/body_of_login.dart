@@ -13,7 +13,7 @@ import 'package:spot/feature/auth/presentation/views/widgets/custom_text_button.
 import 'package:spot/feature/auth/presentation/views/widgets/group_of_text_feild_login.dart';
 import 'package:spot/feature/auth/presentation/views/widgets/text_of_login.dart';
 import 'package:spot/feature/forgrtPassword/presentation/view/forget_password.dart';
-import 'package:spot/main_screen.dart';
+import 'package:spot/feature/home/presentation/view/home_view.dart';
 
 class BodyOfLogin extends StatefulWidget {
   const BodyOfLogin({super.key});
@@ -30,7 +30,7 @@ class _BodyOfLoginState extends State<BodyOfLogin> {
     return BlocListener<UserCubit, UserState>(
       listener: (context, state) {
         if (state is SignInSucsses) {
-          Navigator.pushReplacementNamed(context, MainScreen.id);
+          Navigator.pushReplacementNamed(context, SpotsScreen.id);
         } else if (state is SignInFailure) {
           CustomAswesomeDialog().AwesomeDialogError(
             context: context,

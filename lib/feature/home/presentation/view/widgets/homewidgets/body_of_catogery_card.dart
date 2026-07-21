@@ -9,8 +9,13 @@ import 'package:spot/core/utils/width_manager.dart';
 import 'package:spot/feature/home/data/model/catogery_model.dart';
 
 class BodyOfCatogeryCard extends StatelessWidget {
-  const BodyOfCatogeryCard({super.key, required this.categoryModel});
+  const BodyOfCatogeryCard({
+    super.key,
+    required this.categoryModel,
+    required this.spotCount,
+  });
   final CategoryModel categoryModel;
+  final int spotCount;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -36,7 +41,10 @@ class BodyOfCatogeryCard extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(TextManager.spotsCount, style: Styles.textStyle13),
+              Text(
+                "${spotCount.toString()} ${TextManager.spotsCount}",
+                style: Styles.textStyle13,
+              ),
               const Spacer(),
               Container(
                 width: WidthManager.w25,

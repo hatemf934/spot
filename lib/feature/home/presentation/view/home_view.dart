@@ -1,17 +1,37 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spot/feature/auth/presentation/bloc/login/user_cubit.dart';
-import 'package:spot/feature/home/presentation/view/widgets/homewidgets/spot_screen.dart';
+import 'package:spot/core/utils/color_manager.dart';
+import 'package:spot/core/utils/height_manger.dart';
+import 'package:spot/core/utils/padding_manager.dart';
+import 'package:spot/core/utils/route_manager.dart';
+import 'package:spot/feature/home/presentation/view/widgets/homewidgets/gird_view_catogery_card.dart';
+import 'package:spot/feature/home/presentation/view/widgets/homewidgets/spots_title_row.dart';
+import 'package:spot/feature/home/presentation/view/widgets/homewidgets/welcome_header.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
-
+class SpotsScreen extends StatelessWidget {
+  const SpotsScreen({super.key});
+  static const String id = RouteManager.spotsView;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SpotsScreen(),
-      // body: Center(
+      backgroundColor: ColorManager.scaffoldColor,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(PaddingManager.p12),
+          child: Column(
+            children: const [
+              WelcomeHeader(),
+              SizedBox(height: HeightManager.h32),
+              SpotsTitleRow(),
+              SizedBox(height: HeightManager.h8),
+              Expanded(child: GridViewCatogeryCard()),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+ // body: Center(
       //   child: TextButton(
       //     onPressed: () async {
       //       Navigator.pop(context);
@@ -22,6 +42,3 @@ class HomeView extends StatelessWidget {
       //     child: Text("sign out"),
       //   ),
       // ),
-    );
-  }
-}
