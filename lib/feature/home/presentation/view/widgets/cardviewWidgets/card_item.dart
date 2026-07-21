@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:spot/core/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/raduis_manager.dart';
 import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/hero_image_card_item.dart';
 import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/info_card_item.dart';
 
 class CustomCardItem extends StatelessWidget {
-  const CustomCardItem({super.key});
-
+  const CustomCardItem({super.key, required this.placeItemDetailsModel});
+  final PlaceItemDetailsModel placeItemDetailsModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +26,10 @@ class CustomCardItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [HeroImageCardItem(), InfoCardItem()],
+        children: [
+          HeroImageCardItem(),
+          InfoCardItem(placeItemDetailsModel: placeItemDetailsModel),
+        ],
       ),
     );
   }

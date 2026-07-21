@@ -1,19 +1,17 @@
+
+
 import 'place.dart';
 
 class PlaceItemDetailsModel {
-  List<Place>? places;
+  Place? place;
 
-  PlaceItemDetailsModel({this.places});
+  PlaceItemDetailsModel({this.place});
 
   factory PlaceItemDetailsModel.fromJson(Map<String, dynamic> json) {
-    return PlaceItemDetailsModel(
-      places: (json['places'] as List<dynamic>?)
-          ?.map((e) => Place.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+    return PlaceItemDetailsModel(place: Place.fromJson(json));
   }
 
   Map<String, dynamic> toJson() {
-    return {'places': places?.map((e) => e.toJson()).toList()};
+    return place?.toJson() ?? {};
   }
 }

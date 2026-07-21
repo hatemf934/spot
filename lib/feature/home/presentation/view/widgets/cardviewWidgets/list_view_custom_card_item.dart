@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spot/core/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/card_item.dart';
 
 class ListviewCardItem extends StatelessWidget {
@@ -7,19 +8,24 @@ class ListviewCardItem extends StatelessWidget {
     required this.scrollDirection,
     required this.sizedBox,
     this.width,
+    required this.places,
   });
   final Axis scrollDirection;
   final SizedBox sizedBox;
   final double? width;
+  final List<PlaceItemDetailsModel> places;
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       scrollDirection: scrollDirection,
       itemBuilder: (context, index) {
-        return SizedBox(width: width, child: CustomCardItem());
+        return SizedBox(
+          width: width,
+          child: CustomCardItem(placeItemDetailsModel: places[index]),
+        );
       },
       separatorBuilder: (context, index) => sizedBox,
-      itemCount: 20,
+      itemCount: places.length,
     );
   }
 }

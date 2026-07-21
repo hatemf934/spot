@@ -16,13 +16,11 @@ class PlaceItemDetailsRepoImplement extends PlaceItemDetailsRepo {
       final response = await dioClass.post(
         EndPointClass.searchText,
         data: {
-          {
-            "textQuery": textQuery,
-            "locationRestriction": {
-              "rectangle": {
-                "low": {"latitude": 31.05, "longitude": 29.75},
-                "high": {"latitude": 31.35, "longitude": 30.10},
-              },
+          "textQuery": textQuery,
+          "locationRestriction": {
+            "rectangle": {
+              "low": {"latitude": 31.05, "longitude": 29.75},
+              "high": {"latitude": 31.35, "longitude": 30.10},
             },
           },
         },

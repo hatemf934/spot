@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spot/core/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/core/utils/font_manager.dart';
 import 'package:spot/core/utils/padding_manager.dart';
@@ -7,15 +8,19 @@ import 'package:spot/core/utils/styles.dart';
 import 'package:spot/core/utils/width_manager.dart';
 
 class NameAndRatingSection extends StatelessWidget {
-  const NameAndRatingSection({super.key, required this.rating});
-  final double rating;
+  const NameAndRatingSection({super.key, required this.placeItemDetailsModel});
+  final PlaceItemDetailsModel placeItemDetailsModel;
   @override
   Widget build(BuildContext context) {
+    final place = placeItemDetailsModel.place;
+
+    final name = place?.displayName?.text ?? 'not found';
+    final rating = place?.rating ?? 0.0;
     return Row(
       children: [
         Expanded(
           child: Text(
-            "Drda Coffee",
+            name,
             style: Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
           ),
         ),

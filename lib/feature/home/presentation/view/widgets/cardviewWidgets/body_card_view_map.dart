@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:spot/core/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/width_manager.dart';
 import 'package:spot/feature/home/presentation/view/widgets/custom_google_map.dart';
 import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/list_view_custom_card_item.dart';
 
 class BodyCardViewMap extends StatelessWidget {
-  const BodyCardViewMap({super.key});
-
+  const BodyCardViewMap({super.key, required this.places});
+  final List<PlaceItemDetailsModel> places;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -21,6 +22,7 @@ class BodyCardViewMap extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: PaddingManager.p12),
               child: ListviewCardItem(
+                places: places,
                 scrollDirection: Axis.horizontal,
                 sizedBox: SizedBox(width: WidthManager.w22),
                 width: MediaQuery.of(context).size.width * 0.78,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spot/core/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/feature/auth/presentation/views/login_view.dart';
 import 'package:spot/feature/auth/presentation/views/regester_view.dart';
@@ -12,6 +13,8 @@ import 'package:spot/feature/splash/presentation/views/splash_view.dart';
 import 'package:spot/main_screen.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
+  debugPrint("Route => ${routeSettings.name}");
+  debugPrint("Arguments => ${routeSettings.arguments}");
   switch (routeSettings.name) {
     case RouteManager.splashRoute:
       return MaterialPageRoute(builder: (context) => const SplashView());
@@ -28,9 +31,15 @@ Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     case RouteManager.forgetRoute:
       return MaterialPageRoute(builder: (context) => const ForgetPassword());
     case RouteManager.cardviewVertical:
-      return MaterialPageRoute(builder: (context) => const CardViewVertical());
+      final places = routeSettings.arguments as List<PlaceItemDetailsModel>;
+      return MaterialPageRoute(
+        builder: (context) => CardViewVertical(places: places),
+      );
     case RouteManager.cardvievHorzental:
-      return MaterialPageRoute(builder: (context) => const CardViewHorzintal());
+      final places = routeSettings.arguments as List<PlaceItemDetailsModel>;
+      return MaterialPageRoute(
+        builder: (context) => CardViewHorzintal(places: places),
+      );
     case RouteManager.changeMapLocationView:
       final onLocationSelected =
           routeSettings.arguments as void Function(String);

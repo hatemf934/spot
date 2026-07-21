@@ -7,12 +7,10 @@ import 'package:spot/core/utils/styles.dart';
 import 'package:spot/core/utils/text_manager.dart';
 import 'package:spot/core/utils/width_manager.dart';
 import 'package:spot/feature/home/data/model/catogery_model.dart';
-import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
 
 class BodyOfCatogeryCard extends StatelessWidget {
   const BodyOfCatogeryCard({super.key, required this.categoryModel});
   final CategoryModel categoryModel;
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -40,20 +38,17 @@ class BodyOfCatogeryCard extends StatelessWidget {
               ),
               Text(TextManager.spotsCount, style: Styles.textStyle13),
               const Spacer(),
-              GestureDetector(
-                onTap: () => Navigator.pushNamed(context, CardViewVertical.id),
-                child: Container(
-                  width: WidthManager.w25,
-                  height: HeightManager.h25,
-                  decoration: BoxDecoration(
-                    color: ColorManager.semiTransparentWhite,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.arrow_forward,
-                    color: ColorManager.witheColor,
-                    size: FontManager.f14,
-                  ),
+              Container(
+                width: WidthManager.w25,
+                height: HeightManager.h25,
+                decoration: BoxDecoration(
+                  color: ColorManager.semiTransparentWhite,
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.arrow_forward,
+                  color: ColorManager.witheColor,
+                  size: FontManager.f14,
                 ),
               ),
             ],
