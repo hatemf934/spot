@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:spot/feature/home/data/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/feature/auth/presentation/views/login_view.dart';
 import 'package:spot/feature/auth/presentation/views/regester_view.dart';
 import 'package:spot/feature/forgrtPassword/presentation/view/change_password.dart';
 import 'package:spot/feature/forgrtPassword/presentation/view/forget_password.dart';
 import 'package:spot/feature/forgrtPassword/presentation/view/otp_view.dart';
+import 'package:spot/feature/home/data/model/card_view_argement.dart';
 import 'package:spot/feature/home/presentation/view/card_view_horzintal.dart';
 import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
 import 'package:spot/feature/home/presentation/view/change_map_location_view.dart';
@@ -28,16 +28,25 @@ Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(builder: (context) => const OtpView());
     case RouteManager.forgetRoute:
       return MaterialPageRoute(builder: (context) => const ForgetPassword());
+
     case RouteManager.cardviewVertical:
-      final places = routeSettings.arguments as List<PlaceItemDetailsModel>;
+      final args = routeSettings.arguments as CardViewArguments;
       return MaterialPageRoute(
-        builder: (context) => CardViewVertical(places: places),
+        builder: (context) => CardViewVertical(
+          cubit: args.cubit,
+          categoryModel: args.categoryModel,
+        ),
       );
+
     case RouteManager.cardvievHorzental:
-      final places = routeSettings.arguments as List<PlaceItemDetailsModel>;
+      final args = routeSettings.arguments as CardViewArguments;
       return MaterialPageRoute(
-        builder: (context) => CardViewHorzintal(places: places),
+        builder: (context) => CardViewHorzintal(
+          cubit: args.cubit,
+          categoryModel: args.categoryModel,
+        ),
       );
+
     case RouteManager.changeMapLocationView:
       final onLocationSelected =
           routeSettings.arguments as void Function(String);

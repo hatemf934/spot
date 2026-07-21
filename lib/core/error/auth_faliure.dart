@@ -1,12 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-abstract class Failure {
+class AuthFailure {
   final String message;
-  const Failure({required this.message});
-}
+  const AuthFailure({required this.message});
 
-class AuthFailure extends Failure {
-  AuthFailure({required super.message});
   factory AuthFailure.fromFirebaseAuthException(
     FirebaseAuthException authError,
   ) {

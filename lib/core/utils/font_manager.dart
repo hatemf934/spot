@@ -10,4 +10,5 @@ class FontManager {
   static const double f24 = 24;
   static const double f26 = 26;
   static const double f28 = 28;
+  static const double f65 = 65;
 }

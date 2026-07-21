@@ -9,15 +9,17 @@ class CustomAppBarCardView extends StatelessWidget
     super.key,
     required this.onPressed,
     required this.iconData,
+    required this.spotName,
   });
   final VoidCallback onPressed;
   final IconData iconData;
+  final String spotName;
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: ColorManager.scaffoldColor,
       title: Text(
-        'Restaurants',
+        spotName,
         style: Styles.textStyleBlack.copyWith(fontSize: FontManager.f24),
       ),
       actions: [

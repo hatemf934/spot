@@ -62,4 +62,5 @@ class TextManager {
   static const String culture = "Culture";
   static const String shoppingRetail = "Shopping & Retail";
   static const String fitnessWellness = "Fitness & Wellness";
+  static const String tryAgain = "try again";
 }

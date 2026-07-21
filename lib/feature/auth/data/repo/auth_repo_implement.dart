@@ -13,7 +13,7 @@ class AuthRepoImplement extends AuthRepo {
   final AuthFireBaseServices authFireBaseServices = AuthFireBaseServices();
   final FireStoreServices fireStoreServices = FireStoreServices();
   @override
-  Future<Either<Failure, User>> signUpWithEmailAndPassword({
+  Future<Either<AuthFailure, User>> signUpWithEmailAndPassword({
     required String email,
     required String password,
     required String fullName,
@@ -55,7 +55,7 @@ class AuthRepoImplement extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, User>> signInWithEmailAndPassword({
+  Future<Either<AuthFailure, User>> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -86,7 +86,7 @@ class AuthRepoImplement extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, User>> signInWithGoogle() async {
+  Future<Either<AuthFailure, User>> signInWithGoogle() async {
     try {
       final googleSignIn = GoogleSignIn.instance;
       await googleSignIn.initialize();

@@ -1,6 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:spot/core/api/dio_class.dart';
 import 'package:spot/core/api/end_points_class.dart';
+import 'package:spot/core/error/faliure.dart';
+import 'package:spot/core/error/general_failure.dart';
+import 'package:spot/core/error/server_failure.dart';
 import 'package:spot/feature/home/data/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/feature/home/data/repos/place_item_details_repo.dart';
 
@@ -9,7 +13,7 @@ class PlaceItemDetailsRepoImplement extends PlaceItemDetailsRepo {
 
   PlaceItemDetailsRepoImplement({required this.dioClass});
   @override
-  Future<List<PlaceItemDetailsModel>> getPlaces({
+  Future<Either<Failure, List<PlaceItemDetailsModel>>> getPlaces({
     required String textQuery,
   }) async {
     try {
@@ -32,9 +36,15 @@ class PlaceItemDetailsRepoImplement extends PlaceItemDetailsRepo {
                 PlaceItemDetailsModel.fromJson(item as Map<String, dynamic>),
           )
           .toList();
-      return places;
+      return right(places);
     } on DioException catch (e) {
-      throw Exception('Failed to fetch predictions: ${e.message}');
+      return left(ServerFailure.fromDioException(e));
+    } on TypeError catch (e) {
+      return left(GeneralFailure.fromException(e));
+    } on FormatException catch (e) {
+      return left(GeneralFailure.fromException(e));
+    } catch (e) {
+      return left(GeneralFailure.fromException(e));
     }
   }
 }

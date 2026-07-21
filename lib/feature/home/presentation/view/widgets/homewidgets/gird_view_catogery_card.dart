@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:spot/feature/home/data/model/catogery_model.dart';
+import 'package:spot/feature/home/presentation/bloc/places_item_cubit/places_item_cubit.dart';
 import 'package:spot/feature/home/presentation/view/widgets/homewidgets/catogery_card.dart';
 
 class GridViewCatogeryCard extends StatelessWidget {
-  const GridViewCatogeryCard({super.key});
+  const GridViewCatogeryCard({super.key, required this.cubits});
+  final List<PlacesItemCubitCubit> cubits;
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -15,7 +18,10 @@ class GridViewCatogeryCard extends StatelessWidget {
       ),
       itemCount: categories.length,
       itemBuilder: (context, index) {
-        return CatogeryCard(categoryModel: categories[index]);
+        return CatogeryCard(
+          categoryModel: categories[index],
+          cubit: cubits[index],
+        );
       },
     );
   }
