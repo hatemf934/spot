@@ -27,8 +27,11 @@ class CustomCardItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HeroImageCardItem(),
-          InfoCardItem(placeItemDetailsModel: placeItemDetailsModel),
+          Expanded(flex: 4, child: HeroImageCardItem()),
+          Expanded(
+            flex: 3,
+            child: InfoCardItem(placeItemDetailsModel: placeItemDetailsModel),
+          ),
         ],
       ),
     );

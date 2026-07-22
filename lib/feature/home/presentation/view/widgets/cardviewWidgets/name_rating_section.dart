@@ -21,6 +21,8 @@ class NameAndRatingSection extends StatelessWidget {
         Expanded(
           child: Text(
             name,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
