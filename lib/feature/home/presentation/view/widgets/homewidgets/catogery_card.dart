@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spot/core/utils/raduis_manager.dart';
 import 'package:spot/feature/home/data/model/card_view_argement.dart';
 import 'package:spot/feature/home/data/model/catogery_model.dart';
-import 'package:spot/feature/home/presentation/bloc/places_item_cubit/places_item_cubit.dart';
+import 'package:spot/feature/home/presentation/bloc/places_cubit/places_cubit.dart';
 import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
 import 'package:spot/feature/home/presentation/view/widgets/homewidgets/body_of_catogery_card.dart';
 
@@ -15,7 +15,7 @@ class CatogeryCard extends StatelessWidget {
   });
 
   final CategoryModel categoryModel;
-  final PlacesItemCubitCubit cubit;
+  final PlacesCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,9 @@ class CatogeryCard extends StatelessWidget {
 
     return BlocProvider.value(
       value: cubit,
-      child: BlocBuilder<PlacesItemCubitCubit, PlacesItemCubitState>(
+      child: BlocBuilder<PlacesCubit, PlacesState>(
         builder: (context, state) {
-          final spotCount = state is PlacesItemCubitSuccses
+          final spotCount = state is PlacesItemSuccses
               ? state.places.length
               : 0;
 

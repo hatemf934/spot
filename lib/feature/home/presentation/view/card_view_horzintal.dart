@@ -7,7 +7,7 @@ import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/feature/home/data/model/card_view_argement.dart';
 import 'package:spot/feature/home/data/model/catogery_model.dart';
-import 'package:spot/feature/home/presentation/bloc/places_item_cubit/places_item_cubit.dart';
+import 'package:spot/feature/home/presentation/bloc/places_cubit/places_cubit.dart';
 import 'package:spot/feature/home/presentation/view/card_view_vertical.dart';
 import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/body_card_view_map.dart';
 import 'package:spot/feature/home/presentation/view/widgets/cardviewWidgets/custom_app_bar_card_view.dart';
@@ -20,7 +20,7 @@ class CardViewHorzintal extends StatelessWidget {
     required this.categoryModel,
   });
   static const String id = RouteManager.cardvievHorzental;
-  final PlacesItemCubitCubit cubit;
+  final PlacesCubit cubit;
   final CategoryModel categoryModel;
 
   @override
@@ -48,9 +48,9 @@ class CardViewHorzintal extends StatelessWidget {
               child: CustomSearchField(),
             ),
             Expanded(
-              child: BlocConsumer<PlacesItemCubitCubit, PlacesItemCubitState>(
+              child: BlocConsumer<PlacesCubit, PlacesState>(
                 listener: (context, state) {
-                  if (state is PlacesItemCubitFaliure) {
+                  if (state is PlacesFaliure) {
                     CustomSnackBar.showError(
                       context,
                       message: state.failure.userMessage,
@@ -58,8 +58,7 @@ class CardViewHorzintal extends StatelessWidget {
                   }
                 },
                 builder: (context, state) {
-                  if (state is PlacesItemCubitLoading ||
-                      state is PlacesItemCubitInitial) {
+                  if (state is PlacesLoading || state is PlacesInitial) {
                     return const Center(
                       child: CircularProgressIndicator(
                         color: ColorManager.primaryColor,
@@ -67,7 +66,7 @@ class CardViewHorzintal extends StatelessWidget {
                     );
                   }
 
-                  if (state is PlacesItemCubitFaliure) {
+                  if (state is PlacesFaliure) {
                     return ErrorView(
                       failure: state.failure,
                       onRetry: () =>
@@ -75,7 +74,7 @@ class CardViewHorzintal extends StatelessWidget {
                     );
                   }
 
-                  final places = (state as PlacesItemCubitSuccses).places;
+                  final places = (state as PlacesItemSuccses).places;
                   return BodyCardViewMap(places: places);
                 },
               ),

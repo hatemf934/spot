@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:spot/feature/home/data/model/catogery_model.dart';
-import 'package:spot/feature/home/presentation/bloc/places_item_cubit/places_item_cubit.dart';
+import 'package:spot/feature/home/presentation/bloc/places_cubit/places_cubit.dart';
 import 'package:spot/feature/home/presentation/view/widgets/homewidgets/catogery_card.dart';
 
 class GridViewCatogeryCard extends StatelessWidget {
   const GridViewCatogeryCard({super.key, required this.cubits});
-  final List<PlacesItemCubitCubit> cubits;
+  final List<PlacesCubit> cubits;
 
   @override
   Widget build(BuildContext context) {

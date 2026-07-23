@@ -7,7 +7,7 @@ import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/route_manager.dart';
 import 'package:spot/feature/home/data/model/catogery_model.dart';
 import 'package:spot/feature/home/data/repos/place_item_details_repo_implement.dart';
-import 'package:spot/feature/home/presentation/bloc/places_item_cubit/places_item_cubit.dart';
+import 'package:spot/feature/home/presentation/bloc/places_cubit/places_cubit.dart';
 import 'package:spot/feature/home/presentation/view/widgets/homewidgets/gird_view_catogery_card.dart';
 import 'package:spot/feature/home/presentation/view/widgets/homewidgets/spots_title_row.dart';
 import 'package:spot/feature/home/presentation/view/widgets/homewidgets/welcome_header.dart';
@@ -21,13 +21,13 @@ class SpotsScreen extends StatefulWidget {
 }
 
 class _SpotsScreenState extends State<SpotsScreen> {
-  late final List<PlacesItemCubitCubit> cubits;
+  late final List<PlacesCubit> cubits;
 
   @override
   void initState() {
     super.initState();
     cubits = categories.map((category) {
-      final cubit = PlacesItemCubitCubit(
+      final cubit = PlacesCubit(
         PlacesRepoImplement(dioClass: DioClass(dio: Dio())),
       );
       cubit.getPlaces(textQuery: category.name);
