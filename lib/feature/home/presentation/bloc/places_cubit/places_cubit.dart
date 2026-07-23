@@ -43,10 +43,15 @@ class PlacesCubit extends Cubit<PlacesState> {
       input: input,
       sesstionToken: sesstionToken,
     );
-    result.fold(
-      (failure) => emit(PlacesFaliure(failure: failure)),
-      (predictionList) => emit(PredictionsSuccses(prediction: predictionList)),
-    );
+    result.fold((failure) => emit(PlacesFaliure(failure: failure)), (
+      predictionList,
+    ) {
+      if (predictionList.isEmpty) {
+        emit(PlacesItemNotFound());
+      } else {
+        emit(PredictionsSuccses(prediction: predictionList));
+      }
+    });
   }
 
   void clearPredictions() {

@@ -7,6 +7,8 @@ final class PlacesInitial extends PlacesState {}
 
 final class PlacesLoading extends PlacesState {}
 
+final class PlacesItemNotFound extends PlacesState {}
+
 final class PlacesFaliure extends PlacesState {
   final Failure failure;
 

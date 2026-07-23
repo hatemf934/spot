@@ -85,7 +85,9 @@ class PlacesRepoImplement extends PlacesRepo {
         },
       );
 
-      List<dynamic> suggestions = response['suggestions'];
+      // List<dynamic> suggestions = response['suggestions'];
+      final List<dynamic> suggestions =
+          (response['suggestions'] as List<dynamic>?) ?? [];
       List<PlacesCityModel> predictions = suggestions
           .map(
             (item) => PlacesCityModel.fromJson(

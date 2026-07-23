@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:spot/core/helpers/custom_snack_bar.dart';
 import 'package:spot/core/utils/height_manger.dart';
+import 'package:spot/core/utils/styles.dart';
+import 'package:spot/core/utils/text_manager.dart';
 import 'package:spot/feature/home/data/model/places_details_model/places_details_model.dart';
 import 'package:spot/core/utils/color_manager.dart';
 import 'package:spot/feature/home/presentation/bloc/places_cubit/places_cubit.dart';
@@ -32,6 +34,14 @@ class CustomListViewPredictions extends StatelessWidget {
               child: CircularProgressIndicator(
                 color: ColorManager.primaryColor,
               ),
+            ),
+          );
+        } else if (state is PlacesItemNotFound) {
+          return Container(
+            color: ColorManager.witheColor,
+            height: HeightManager.h70,
+            child: Center(
+              child: Text(TextManager.notFound, style: Styles.textStyle16),
             ),
           );
         } else if (state is PredictionsSuccses) {
