@@ -48,4 +48,8 @@ class PlacesCubit extends Cubit<PlacesState> {
       (predictionList) => emit(PredictionsSuccses(prediction: predictionList)),
     );
   }
+
+  void clearPredictions() {
+    emit(PlacesInitial());
+  }
 }
