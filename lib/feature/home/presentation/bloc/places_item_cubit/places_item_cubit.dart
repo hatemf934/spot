@@ -10,7 +10,7 @@ class PlacesItemCubitCubit extends Cubit<PlacesItemCubitState> {
   PlacesItemCubitCubit(this.placeItemDetailsRepo)
     : super(PlacesItemCubitInitial());
 
-  final PlaceItemDetailsRepo placeItemDetailsRepo;
+  final PlacesRepo placeItemDetailsRepo;
   String lastQuery = '';
 
   Future<void> getPlaces({required String textQuery}) async {

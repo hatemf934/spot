@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:spot/constants.dart';
-import 'package:spot/core/model/places_details_model/places_details_model.dart';
+import 'package:spot/feature/home/data/model/places_details_model/places_details_model.dart';
 import 'package:spot/core/utils/assets_manager.dart';
 
 class CustomGoogleMap extends StatefulWidget {

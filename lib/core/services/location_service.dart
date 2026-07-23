@@ -27,13 +27,6 @@ class LocationService {
     }
   }
 
-  // void getRealTimeLocationData(void Function(LocationData)? onData) async {
-  //   await checkAndRequestLocationService();
-  //   await checkAndRequestLocationPermission();
-  //   location.changeSettings(distanceFilter: 10);
-  //   location.onLocationChanged.listen(onData);
-  // }
-
   Future<LocationData> getLocationData() async {
     await checkAndRequestLocationService();
     await checkAndRequestLocationPermission();

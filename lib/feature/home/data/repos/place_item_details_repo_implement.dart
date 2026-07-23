@@ -8,10 +8,10 @@ import 'package:spot/core/error/server_failure.dart';
 import 'package:spot/feature/home/data/model/place_item_details_model/place_item_details_model.dart';
 import 'package:spot/feature/home/data/repos/place_item_details_repo.dart';
 
-class PlaceItemDetailsRepoImplement extends PlaceItemDetailsRepo {
+class PlacesRepoImplement extends PlacesRepo {
   final DioClass dioClass;
 
-  PlaceItemDetailsRepoImplement({required this.dioClass});
+  PlacesRepoImplement({required this.dioClass});
   @override
   Future<Either<Failure, List<PlaceItemDetailsModel>>> getPlaces({
     required String textQuery,

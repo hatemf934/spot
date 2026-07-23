@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:spot/core/api/dio_class.dart';
 import 'package:spot/core/api/end_points_class.dart';
-import 'package:spot/core/model/places_city_model/places_city_model.dart';
-import 'package:spot/core/model/places_details_model/places_details_model.dart';
+import 'package:spot/feature/home/data/model/places_city_model/places_city_model.dart';
+import 'package:spot/feature/home/data/model/places_details_model/places_details_model.dart';
 
 class GoogleMapsPlacesService {
   GoogleMapsPlacesService({required this.dioClass});

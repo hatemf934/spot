@@ -28,7 +28,7 @@ class _SpotsScreenState extends State<SpotsScreen> {
     super.initState();
     cubits = categories.map((category) {
       final cubit = PlacesItemCubitCubit(
-        PlaceItemDetailsRepoImplement(dioClass: DioClass(dio: Dio())),
+        PlacesRepoImplement(dioClass: DioClass(dio: Dio())),
       );
       cubit.getPlaces(textQuery: category.name);
       return cubit;
