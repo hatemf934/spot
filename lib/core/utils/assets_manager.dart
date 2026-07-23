@@ -12,4 +12,6 @@ class AssetsManager {
   static const String partyEvents = "assets/spotsimages/party_events.png";
   static const String shopping = "assets/spotsimages/shopping.png";
   static const String theater = "assets/spotsimages/theater_arts.png";
+  static const String interfaceStyle = "assets/mapStyles/Interface_map.json";
+  static const String markerIcon = "assets/markerIcon/marker_app.png";
 }

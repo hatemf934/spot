@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:spot/core/model/places_city_model/places_city_model.dart';
 import 'package:spot/core/model/places_details_model/places_details_model.dart';
-import 'package:spot/core/services/places_service.dart';
+import 'package:spot/core/services/google_map_service.dart';
 import 'package:spot/core/utils/color_manager.dart';
 
 class CustomListViewPredictions extends StatelessWidget {

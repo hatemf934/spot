@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:spot/constants.dart';
 import 'package:spot/core/model/places_details_model/places_details_model.dart';
+import 'package:spot/core/utils/assets_manager.dart';
 
 class CustomGoogleMap extends StatefulWidget {
   const CustomGoogleMap({
@@ -25,10 +27,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   void initState() {
     super.initState();
     initStyleMap();
-    initialCameraPosition = const CameraPosition(
-      target: LatLng(31.2001, 29.9187),
-      zoom: 15,
-    );
+    initialCameraPosition = initPosition;
     initMarkerIcon();
   }
 
@@ -67,7 +66,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   void initStyleMap() async {
     var mapInterfaceStyle = await DefaultAssetBundle.of(
       context,
-    ).loadString("assets/mapStyles/Interface_map.json");
+    ).loadString(AssetsManager.interfaceStyle);
     setState(() {
       mapStyle = mapInterfaceStyle;
     });
@@ -76,9 +75,8 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   void initMarkerIcon() async {
     customIconMarker = await BitmapDescriptor.asset(
       const ImageConfiguration(),
-      "assets/markerIcon/marker_app.png",
+      AssetsManager.markerIcon,
     );
-    updateMarker(const LatLng(31.2001, 29.9187));
   }
 
   void updateMarker(LatLng position) {
@@ -86,7 +84,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     final marker = Marker(
       icon: customIconMarker!,
       position: position,
-      markerId: const MarkerId("selected_place_marker"),
+      markerId: const MarkerId(placeMarkerId),
     );
     setState(() {
       myMarker

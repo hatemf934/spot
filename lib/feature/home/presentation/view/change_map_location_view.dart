@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:spot/core/api/dio_class.dart';
 import 'package:spot/core/model/places_city_model/places_city_model.dart';
+import 'package:spot/core/model/places_details_model/location.dart';
 import 'package:spot/core/model/places_details_model/places_details_model.dart';
-import 'package:spot/core/services/places_service.dart';
+import 'package:spot/core/services/location_service.dart';
+import 'package:spot/core/services/google_map_service.dart';
 import 'package:spot/core/utils/height_manger.dart';
 import 'package:spot/core/utils/padding_manager.dart';
 import 'package:spot/core/utils/route_manager.dart';
@@ -25,10 +27,12 @@ class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
   late TextEditingController textEditingController;
   late GoogleMapsPlacesService googleMapsPlacesService;
   late GoogleMapController googleMapController;
+  late LocationService locationService;
   late Uuid uuid;
   List<PlacesCityModel> places = [];
   String? sesstionToken;
   PlacesDetailsModel? selectedPlace;
+  bool isMapReady = false;
   @override
   void initState() {
     uuid = const Uuid();
@@ -36,7 +40,9 @@ class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
     googleMapsPlacesService = GoogleMapsPlacesService(
       dioClass: DioClass(dio: Dio()),
     );
+    locationService = LocationService();
     fetchPredictions();
+    getCurrentLocation();
     super.initState();
   }
 
@@ -57,6 +63,10 @@ class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
             placesDetailsModel: selectedPlace,
             onMapCreated: (controller) {
               googleMapController = controller;
+              isMapReady = true;
+              if (selectedPlace != null) {
+                animateToPlace(selectedPlace!);
+              }
             },
           ),
           Positioned(
@@ -104,6 +114,33 @@ class _ChangeMapLocationViewState extends State<ChangeMapLocationView> {
     googleMapController.animateCamera(
       CameraUpdate.newLatLng(LatLng(location!.latitude!, location.longitude!)),
     );
+  }
+
+  Future<void> getCurrentLocation() async {
+    try {
+      final locationData = await locationService.getLocationData();
+      if (locationData.latitude == null || locationData.longitude == null) {
+        return;
+      }
+      final currentPlace = PlacesDetailsModel(
+        location: Location(
+          latitude: locationData.latitude,
+          longitude: locationData.longitude,
+        ),
+      );
+      setState(() {
+        selectedPlace = currentPlace;
+      });
+      if (isMapReady) {
+        animateToPlace(currentPlace);
+      }
+    } on LocationServiceException catch (e) {
+      // TODO:
+    } on LocationPermissionException catch (e) {
+      // TODO :
+    } catch (e) {
+      // TODO:
+    }
   }
 
   void fetchPredictions() {
