@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:spot/core/api/dio_class.dart';
 import 'package:spot/core/api/end_points_class.dart';
 import 'package:spot/core/error/faliure.dart';
@@ -12,7 +13,7 @@ import 'package:spot/feature/home/data/repos/place_item_details_repo.dart';
 
 class PlacesRepoImplement extends PlacesRepo {
   final DioClass dioClass;
-
+  final Geocoding geocoding = Geocoding();
   PlacesRepoImplement({required this.dioClass});
   @override
   Future<Either<Failure, List<PlaceItemDetailsModel>>> getPlaces({
@@ -85,7 +86,6 @@ class PlacesRepoImplement extends PlacesRepo {
         },
       );
 
-      // List<dynamic> suggestions = response['suggestions'];
       final List<dynamic> suggestions =
           (response['suggestions'] as List<dynamic>?) ?? [];
       List<PlacesCityModel> predictions = suggestions
@@ -104,6 +104,27 @@ class PlacesRepoImplement extends PlacesRepo {
       return left(GeneralFailure.fromException(e));
     } catch (e) {
       return left(GeneralFailure.fromException(e));
+    }
+  }
+
+  @override
+  Future<String?> getPlaceNameFromLatLng({
+    required double latitude,
+    required double longitude,
+  }) async {
+    try {
+      final placemarks = await geocoding.placemarkFromCoordinates(
+        latitude,
+        longitude,
+      );
+      if (placemarks.isEmpty) return null;
+
+      final place = placemarks.first;
+      return place.locality ??
+          place.subAdministrativeArea ??
+          place.administrativeArea;
+    } catch (e) {
+      return null;
     }
   }
 }

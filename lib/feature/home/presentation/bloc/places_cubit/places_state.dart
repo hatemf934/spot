@@ -32,3 +32,9 @@ final class PredictionsSuccses extends PlacesState {
 
   PredictionsSuccses({required this.prediction});
 }
+
+final class PlaceNameSuccess extends PlacesState {
+  final String namePlace;
+
+  PlaceNameSuccess({required this.namePlace});
+}

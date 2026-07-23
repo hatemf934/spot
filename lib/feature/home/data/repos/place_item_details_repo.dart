@@ -15,4 +15,8 @@ abstract class PlacesRepo {
   Future<Either<Failure, PlacesDetailsModel>> getPlaceDetails({
     required String placeId,
   });
+  Future<String?> getPlaceNameFromLatLng({
+    required double latitude,
+    required double longitude,
+  });
 }

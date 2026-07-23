@@ -57,4 +57,18 @@ class PlacesCubit extends Cubit<PlacesState> {
   void clearPredictions() {
     emit(PlacesInitial());
   }
+
+  Future<void> getPlaceNameFromLatLng({
+    required double latitude,
+    required double longitude,
+  }) async {
+    final namePlace = await placeItemDetailsRepo.getPlaceNameFromLatLng(
+      latitude: latitude,
+      longitude: longitude,
+    );
+
+    if (namePlace != null) {
+      emit(PlaceNameSuccess(namePlace: namePlace));
+    }
+  }
 }
